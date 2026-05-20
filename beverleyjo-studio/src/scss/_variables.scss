@@ -1,0 +1,68 @@
+// ── FONTS ──────────────────────────────────────────
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&family=Manrope:wght@300;400;500;600;700&display=swap');
+
+$font-display: 'Yeseva One', serif;
+$font-body: 'Manrope', sans-serif;
+
+// ── COLORS ─────────────────────────────────────────
+:root {
+  --emerald: #06402b;
+  --emerald-light: #1a8a52;
+  --gold: #c5973a;
+  --gold-light: #cba14e;
+  --white: #ede5d8;
+  --black: #221b1b;
+}
+.o-darkmode {
+  --emerald: #c5973a;
+  --emerald-light: #cba14e;
+  --gold: #06402b;
+  --gold-light: #1a8a52;
+  --white: #221b1b;
+  --black: #ede5d8;
+}
+$emerald: var(--emerald);
+$emerald-light: var(--emerald-light);
+$gold: var(--gold);
+$gold-light: var(--gold-light);
+$white: var(--white);
+$black: var(--black);
+
+// ── TYPOGRAPHY ─────────────────────────────────────
+$fs-xs: 11px;
+$fs-sm: 13px;
+$fs-base: 16px;
+$fs-md: 18px;
+$fs-lg: 24px;
+$fs-xl: 32px;
+$fs-2xl: 48px;
+$fs-3xl: 64px;
+
+$fw-light: 300;
+$fw-regular: 400;
+$fw-medium: 500;
+$fw-semi: 600;
+$fw-bold: 700;
+
+// ── SPACING ────────────────────────────────────────
+$space-xs: 8px;
+$space-sm: 16px;
+$space-md: 24px;
+$space-lg: 40px;
+$space-xl: 64px;
+$space-2xl: 100px;
+
+// ── BORDERS & RADIUS ───────────────────────────────
+$radius-sm: 2px;
+$radius-md: 4px;
+$radius-full: 999px;
+
+$border-subtle: rgba($white, 0.08);
+$border-green: rgba($emerald, 0.2);
+$border-gold: rgba($gold, 0.35);
+
+// ── TRANSITIONS ────────────────────────────────────
+$transition-fast: all 0.2s ease;
+$transition-base: all 0.3s ease;
+$transition-slow: all 0.5s ease;
+$transition-theme: all 0.4s ease;
