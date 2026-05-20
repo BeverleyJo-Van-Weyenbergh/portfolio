@@ -12,6 +12,7 @@ $font-body: 'Manrope', sans-serif;
   --gold-light: #cba14e;
   --white: #ede5d8;
   --black: #221b1b;
+  --text-muted: rgba(237, 229, 216, 0.8);
 }
 .o-darkmode {
   --emerald: #c5973a;
@@ -20,6 +21,7 @@ $font-body: 'Manrope', sans-serif;
   --gold-light: #1a8a52;
   --white: #221b1b;
   --black: #ede5d8;
+  --text-muted: rgba(34, 27, 27, 0.8);
 }
 $emerald: var(--emerald);
 $emerald-light: var(--emerald-light);
@@ -27,6 +29,7 @@ $gold: var(--gold);
 $gold-light: var(--gold-light);
 $white: var(--white);
 $black: var(--black);
+$text-muted: var(--text-muted);
 
 // ── TYPOGRAPHY ─────────────────────────────────────
 $fs-xs: 11px;

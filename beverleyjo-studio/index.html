@@ -4,13 +4,62 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
   <script type="module" src="src/js/main.js"></script>
   <title>Beverley-Jo Studio</title>
 </head>
 
 <body>
-  <na
-  <h1>test</h1>
+  <div class="c-nav">
+    <nav class="container c-nav__content">
+
+      <div class="c-nav__logo">
+        <a href="#"><img class="c-nav__img" src="/logo-light.png" alt="Beverley-Jo Studio Logo"></a>
+      </div>
+
+      <ul class="c-nav__links">
+        <li class="c-nav__item"><a class="c-nav__link" href="#">Mijn werk</a></li>
+        <li class="c-nav__item"><a class="c-nav__link" href="#">Over mij</a></li>
+        <li class="c-nav__item"><a class="c-nav__link" href="#">Skills</a></li>
+        <li class="c-nav__item"><a class="c-nav__link" href="#">Contact</a></li>
+      </ul>
+
+      <div class="c-nav__actions">
+        <label class="c-toggle js-toggle-label" aria-label="Toggle dark mode">
+          <input type="checkbox" class="c-toggle__input js-toggle" />
+          <span class="c-toggle__track">
+            <span class="c-toggle__thumb"></span>
+            <svg class="c-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5" />
+              <line x1="12" y1="1" x2="12" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" />
+              <line x1="21" y1="12" x2="23" y2="12" />
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+            </svg>
+            <svg class="c-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </span>
+        </label>
+
+        <div class="c-hamburger menu--2 cross">
+          <label class="c-hamburger__label">
+            <input type="checkbox" class="c-hamburger__input" />
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <path class="line--1" d="M0 70l28-28c2-2 2-2 7-2h64" />
+              <path class="line--2" d="M0 50h99" />
+              <path class="line--3" d="M0 30l28 28c2 2 2 2 7 2h64" />
+            </svg>
+          </label>
+        </div>
+
+      </div>
+    </nav>
+  </div>
 
 </body>
 
