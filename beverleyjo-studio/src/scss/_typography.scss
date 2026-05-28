@@ -1,0 +1,10 @@
+@use './variables' as *;
+h3 {
+  color: $white;
+  font-size: $fs-lg;
+}
+p {
+  color: $white;
+  font-size: $fs-base;
+  line-height: 1.5;
+}
