@@ -25,7 +25,11 @@
     border-radius: 16px;
     overflow: hidden;
     position: relative;
-    transition: all 0.4s ease-in-out;
+    transition:
+      width 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.45s ease,
+      filter 0.45s ease;
     -webkit-transition: all 0.4s ease-in-out;
     cursor: pointer;
     min-height: 120px;
@@ -76,6 +80,10 @@
       position: absolute;
       inset: 0;
       background-image: $featured-gradient;
+    }
+
+    &:hover {
+      filter: brightness(1.03);
     }
   }
 
