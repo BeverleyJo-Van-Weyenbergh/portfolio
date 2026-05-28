@@ -3,6 +3,25 @@ let body, toggle, hamburgerInput, navLinks, logo;
 const LOGO_LIGHT = '/logo-dark.png';
 const LOGO_DARK = '/logo-light.png';
 
+if (typeof window.$ !== 'undefined') {
+  const $ = window.$;
+
+  if ($.fn && $.fn.owlCarousel) {
+    $('.c-featured__carousel').owlCarousel({
+      autoWidth: true,
+      loop: true,
+    });
+  }
+
+  // Initialize click behavior for carousel items
+  $(function () {
+    $('.c-featured__carousel .item').on('click', function () {
+      $('.c-featured__carousel .item').not(this).removeClass('active');
+      $(this).toggleClass('active');
+    });
+  });
+}
+
 const init = function () {
   body = document.body;
   toggle = document.querySelector('.js-toggle');
@@ -11,27 +30,31 @@ const init = function () {
   logo = document.querySelector('.c-nav__img');
 
   // theme toggle
-  toggle.addEventListener('change', function () {
-    toggleDarkmode();
-    saveToLocalStorage();
-  });
+  if (toggle) {
+    toggle.addEventListener('change', function () {
+      toggleDarkmode();
+      saveToLocalStorage();
+    });
+  }
 
   // hamburger toggle
-  hamburgerInput.addEventListener('change', function () {
-    const isOpen = hamburgerInput.checked;
-    navLinks.classList.toggle('is-open', isOpen);
-  });
+  if (hamburgerInput && navLinks) {
+    hamburgerInput.addEventListener('change', function () {
+      const isOpen = hamburgerInput.checked;
+      navLinks.classList.toggle('is-open', isOpen);
+    });
+  }
 
   // restore saved theme on load
   const saved = localStorage.getItem('darkMode');
   if (saved === 'dark') {
-    toggle.checked = true;
+    if (toggle) toggle.checked = true;
     body.classList.add('o-darkmode');
   } else if (
     !saved &&
     window.matchMedia('(prefers-color-scheme: dark)').matches
   ) {
-    toggle.checked = true;
+    if (toggle) toggle.checked = true;
     body.classList.add('o-darkmode');
   }
 
@@ -52,6 +75,6 @@ const updateLogo = function () {
 };
 
 const saveToLocalStorage = function () {
-  const scheme = toggle.checked ? 'dark' : 'light';
+  const scheme = toggle && toggle.checked ? 'dark' : 'light';
   localStorage.setItem('darkMode', scheme);
 };

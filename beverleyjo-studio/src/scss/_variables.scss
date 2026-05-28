@@ -13,6 +13,17 @@ $font-body: 'Manrope', sans-serif;
   --white: #ede5d8;
   --black: #221b1b;
   --text-muted: rgba(237, 229, 216, 0.8);
+  --gradient: radial-gradient(
+    circle,
+    rgba(26, 138, 82, 1) 0%,
+    rgba(6, 64, 43, 1) 49%,
+    rgba(34, 27, 27, 1) 100%
+  );
+  --featured-gradient: linear-gradient(
+    rgba(6, 64, 43, 0.05),
+    rgba(6, 64, 43, 0.95)
+  );
+  --shadow: box-shadow: 6px 10px 10px rgba(197, 151, 58, 0.25);
 }
 .o-darkmode {
   --emerald: #c5973a;
@@ -22,6 +33,16 @@ $font-body: 'Manrope', sans-serif;
   --white: #221b1b;
   --black: #ede5d8;
   --text-muted: rgba(34, 27, 27, 0.8);
+  --gradient: radial-gradient(
+    circle,
+    rgba(197, 151, 58, 1) 0%,
+    rgba(237, 229, 216, 1) 100%
+  );
+  --featured-gradient: linear-gradient(
+    rgba(197, 151, 58, 0.05),
+    rgba(197, 151, 58, 0.95)
+  );
+  --shadow: box-shadow: 6px 10px 10px rgba(6, 64, 43, 0.25);
 }
 $emerald: var(--emerald);
 $emerald-light: var(--emerald-light);
@@ -30,6 +51,9 @@ $gold-light: var(--gold-light);
 $white: var(--white);
 $black: var(--black);
 $text-muted: var(--text-muted);
+$gradient: var(--gradient);
+$featured-gradient: var(--featured-gradient);
+$shadow: var(--shadow);
 
 // ── TYPOGRAPHY ─────────────────────────────────────
 $fs-xs: 11px;

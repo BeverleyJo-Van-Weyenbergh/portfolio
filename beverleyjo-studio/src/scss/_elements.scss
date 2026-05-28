@@ -4,3 +4,35 @@ body {
   color: $white;
   font-family: $font-body;
 }
+.c-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 3px;
+
+  &--primary {
+    background: $emerald;
+    color: $white;
+    border: 1px solid $emerald-light;
+    font-weight: $fw-medium;
+    letter-spacing: 0.06em;
+    transition: all 0.3s ease;
+    &:hover {
+      background: $emerald-light;
+    }
+  }
+  &--secondary {
+    background: transparent;
+    color: $gold;
+    border: 1px solid $gold-light;
+    font-weight: $fw-medium;
+    letter-spacing: 0.06em;
+    transition:
+      all 0.3s ease,
+      color 0.3s ease;
+
+    &:hover {
+      background: $gold;
+      color: $white;
+    }
+  }
+}
