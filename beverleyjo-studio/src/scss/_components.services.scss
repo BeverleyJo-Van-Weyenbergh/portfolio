@@ -1,0 +1,66 @@
+@use './variables' as *;
+
+.c-services {
+  margin-bottom: 6.25rem;
+
+  &__label {
+    font-size: $fs-xs;
+    font-weight: $fw-medium;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: $emerald-light;
+    margin-bottom: 0.75rem;
+  }
+
+  &__heading {
+    font-family: $font-display;
+    font-size: $fs-xl;
+    margin-bottom: 3rem;
+  }
+
+  // ─────────────────────────────────────────────────
+  // Cards in a row
+  // ─────────────────────────────────────────────────
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  &__card {
+    background: var(--card-bg, rgba(128, 128, 128, 0.06));
+    border: 1px solid rgba(128, 128, 128, 0.15);
+    border-radius: 16px;
+    padding: 2rem;
+    transition: border-color 0.25s ease, transform 0.25s ease;
+
+    &:hover {
+      border-color: $emerald-light;
+      transform: translateY(-4px);
+    }
+  }
+
+  &__card-icon {
+    font-size: 28px;
+    margin-bottom: 1.25rem;
+    display: block;
+  }
+
+  &__card-title {
+    font-family: $font-display;
+    font-size: $fs-lg;
+    margin-bottom: 0.75rem;
+  }
+
+  &__card-desc {
+    font-size: $fs-sm;
+    color: $text-muted;
+    line-height: 1.75;
+    margin: 0;
+  }
+
+  // ── RESPONSIVE ────────────────────────────────────
+  @media (max-width: 767px) {
+    &__cards { grid-template-columns: 1fr; }
+  }
+}

@@ -1,0 +1,187 @@
+@use './variables' as *;
+
+.c-contact {
+  margin-bottom: 6.25rem;
+
+  &__inner {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  // ── LEFT COLUMN ────────────────────────────────────
+  &__left {
+    position: sticky;
+    top: 2rem;
+  }
+
+  &__heading {
+    font-family: $font-display;
+    font-size: clamp(2.4rem, 4vw, 3.5rem);
+    line-height: 1.1;
+    margin: 0 0 1.25rem;
+
+    em {
+      font-style: italic;
+      color: $emerald-light;
+    }
+  }
+
+  &__sub {
+    font-size: $fs-sm;
+    color: $text-muted;
+    line-height: 1.85;
+    margin: 0 0 2rem;
+    max-width: 30ch;
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-size: $fs-sm;
+    font-weight: $fw-medium;
+    color: $white;
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: $emerald-light;
+    }
+  }
+
+  &__link-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(128, 128, 128, 0.25);
+    font-size: 17px;
+    font-weight: $fw-semi;
+    font-style: normal;
+    flex-shrink: 0;
+    transition: border-color 0.2s ease;
+
+    .c-contact__link:hover & {
+      border-color: $emerald-light;
+    }
+  }
+
+  // ── FORM ──────────────────────────────────────────
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  &__label {
+    font-size: $fs-xs;
+    font-weight: $fw-semi;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: $text-muted;
+  }
+
+  &__input {
+    background: rgba(128, 128, 128, 0.06);
+    border: 1px solid rgba(128, 128, 128, 0.2);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-family: $font-body;
+    font-size: $fs-sm;
+    color: $white;
+    outline: none;
+    transition: border-color 0.2s ease;
+    width: 100%;
+
+    &::placeholder {
+      color: rgba(128, 128, 128, 0.5);
+    }
+
+    &:focus {
+      border-color: $emerald-light;
+    }
+
+    &--textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+  }
+
+  &__submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    align-self: flex-start;
+    background: $emerald-light;
+    border: none;
+    border-radius: $radius-full;
+    padding: 12px 28px;
+    font-family: $font-body;
+    font-size: $fs-sm;
+    font-weight: $fw-semi;
+    color: $black;
+    cursor: pointer;
+    transition: opacity 0.2s ease, gap 0.2s ease;
+
+    &:hover {
+      opacity: 0.85;
+      gap: 14px;
+    }
+  }
+
+  &__submit-arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+
+    .c-contact__submit:hover & {
+      transform: translateX(3px);
+    }
+  }
+
+  &__feedback {
+    font-size: $fs-sm;
+    margin: 0;
+    padding: 12px 16px;
+    border-radius: 10px;
+
+    &--success {
+      background: rgba(26, 138, 82, 0.1);
+      border: 1px solid rgba(26, 138, 82, 0.3);
+      color: #6fdba8;
+    }
+
+    &--error {
+      background: rgba(220, 80, 80, 0.1);
+      border: 1px solid rgba(220, 80, 80, 0.3);
+      color: #f5908e;
+    }
+  }
+
+  // ── RESPONSIVE ────────────────────────────────────
+  @media (max-width: 991px) {
+    &__inner {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    &__left {
+      position: static;
+    }
+  }
+}
