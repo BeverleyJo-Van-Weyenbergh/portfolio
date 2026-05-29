@@ -1,0 +1,124 @@
+@use './variables' as *;
+
+.c-heading {
+  min-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 6rem;
+  padding-bottom: 4rem;
+  text-align: center;
+
+  &__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.75rem;
+  }
+
+  // ── LABEL ─────────────────────────────────────────
+  &__label {
+    font-size: $fs-xs;
+    font-weight: $fw-medium;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $text-muted;
+    margin: 0;
+  }
+
+  // ── TITLE ─────────────────────────────────────────
+  &__title {
+    font-family: $font-display;
+    font-size: clamp(3.2rem, 7.5vw, 7rem);
+    line-height: 1.08;
+    margin: 0;
+
+    &--em {
+      font-style: italic;
+      color: $emerald-light;
+    }
+  }
+
+  // ── TAGLINE ───────────────────────────────────────
+  &__text {
+    font-size: $fs-sm;
+    color: $text-muted;
+    line-height: 1.85;
+    margin: 0;
+    max-width: 52ch;
+  }
+
+  // ── BUTTONS ───────────────────────────────────────
+  &__group {
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    @media (max-width: 480px) {
+      flex-direction: column;
+      width: 100%;
+
+      .c-btn { width: 100%; justify-content: center; }
+    }
+  }
+
+  // ── SCROLL INDICATOR ──────────────────────────────
+  &__scroll {
+    display: flex;
+    justify-content: center;
+    margin-top: auto;
+    padding-top: 2rem;
+  }
+
+  &__scroll-arrow {
+    color: $text-muted;
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; transform: translateY(0); }
+    50%       { opacity: 0.8; transform: translateY(5px); }
+  }
+
+  // ── ENTRANCE ANIMATIONS ───────────────────────────
+  @keyframes heroIn {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  [data-reveal] {
+    opacity: 0;
+    animation: heroIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  &__label[data-reveal]  { animation-delay: 0.1s; }
+  &__title[data-reveal]  { animation-delay: 0.25s; }
+  &__text[data-reveal]   { animation-delay: 0.4s; }
+  &__group[data-reveal]  { animation-delay: 0.55s; }
+
+  // ── RESPONSIVE ────────────────────────────────────
+  @media (max-width: 767px) {
+    min-height: 75vh;
+    padding-top: 4.5rem;
+    padding-bottom: 3rem;
+
+    &__inner { gap: 1.25rem; }
+    &__title { font-size: clamp(2.2rem, 9vw, 3.2rem); }
+    &__text  { font-size: $fs-sm; max-width: 38ch; }
+  }
+
+  @media (max-width: 480px) {
+    min-height: 70vh;
+    padding-top: 4rem;
+
+    &__title { font-size: clamp(2rem, 8.5vw, 2.8rem); }
+
+    &__group {
+      flex-direction: column;
+      width: 100%;
+      gap: 0.75rem;
+    }
+  }
+}

@@ -1,30 +1,90 @@
-let body, toggle;
+let body, toggle, hamburgerInput, navLinks, logo, footerLogo;
+
+const LOGO_LIGHT = '/logo-dark.png';
+const LOGO_DARK = '/logo-light.png';
+
+if (typeof window.$ !== 'undefined') {
+  const $ = window.$;
+
+  if ($.fn && $.fn.owlCarousel) {
+    $('.c-featured__carousel').owlCarousel({
+      autoWidth: true,
+      loop: true,
+    });
+  }
+
+  // Initialize click behavior for carousel items
+  $(function () {
+    $('.c-featured__carousel .item').on('click', function () {
+      $('.c-featured__carousel .item').not(this).removeClass('active');
+      $(this).toggleClass('active');
+    });
+  });
+}
+
 const init = function () {
   body = document.body;
   toggle = document.querySelector('.js-toggle');
-  toggle.addEventListener('change', function () {
-    toggleDarkmode();
-    saveToLocalStorage();
-  });
+  hamburgerInput = document.querySelector('.menu--2 input');
+  navLinks = document.querySelector('.c-nav__links');
+  logo = document.querySelector('.c-nav__img');
+  footerLogo = document.querySelector('.c-footer__logo .c-nav__img');
 
-  if (localStorage.getItem('darkMode')) {
-    if (localStorage.getItem('darkMode') == 'dark') {
-      toggle.checked = true;
+  // theme toggle
+  if (toggle) {
+    toggle.addEventListener('change', function () {
       toggleDarkmode();
-    }
-  } else if (window.matchMedia('(prefers-color-scheme:dark)').matches) {
-    toggle.checked = true;
-    toggleDarkmode();
+      saveToLocalStorage();
+    });
   }
+
+  // hamburger toggle
+  if (hamburgerInput && navLinks) {
+    hamburgerInput.addEventListener('change', function () {
+      const isOpen = hamburgerInput.checked;
+      navLinks.classList.toggle('is-open', isOpen);
+    });
+
+    // close menu when a nav link is tapped
+    navLinks.querySelectorAll('.c-nav__link').forEach(function (link) {
+      link.addEventListener('click', function () {
+        hamburgerInput.checked = false;
+        navLinks.classList.remove('is-open');
+      });
+    });
+  }
+
+  // restore saved theme on load
+  const saved = localStorage.getItem('darkMode');
+  if (saved === 'dark') {
+    if (toggle) toggle.checked = true;
+    body.classList.add('o-darkmode');
+  } else if (
+    !saved &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches
+  ) {
+    if (toggle) toggle.checked = true;
+    body.classList.add('o-darkmode');
+  }
+
+  // always update logo on load after theme is set
+  updateLogo();
 };
+
 document.addEventListener('DOMContentLoaded', init);
 
 const toggleDarkmode = function () {
-  console.log('listentoggle');
   body.classList.toggle('o-darkmode');
+  updateLogo();
+};
+
+const updateLogo = function () {
+  const isDark = body.classList.contains('o-darkmode');
+  if (logo) logo.src = isDark ? LOGO_DARK : LOGO_LIGHT;
+  if (footerLogo) footerLogo.src = isDark ? LOGO_DARK : LOGO_LIGHT;
 };
 
 const saveToLocalStorage = function () {
-  const toggleScheme = toggle.checked ? 'dark' : 'light';
-  localStorage.setItem('darkMode', toggleScheme);
+  const scheme = toggle && toggle.checked ? 'dark' : 'light';
+  localStorage.setItem('darkMode', scheme);
 };
