@@ -1,17 +1,17 @@
 @use './variables' as *;
 
+// ── NAV WRAPPER ───────────────────────────────────────────
 .c-nav {
-  border-bottom: 0.5px solid $white;
-  margin-left: 30px;
-  margin-right: 30px;
   position: sticky;
   top: 0;
   z-index: 100;
   background: var(--nav-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
+  border-bottom: 0.5px solid rgba(128, 128, 128, 0.15);
   transition: $transition-theme;
 
+  // ── NAV INNER ──────────────────────────────────────────
   &__content {
     display: grid;
     grid-template-columns: 1fr auto 1fr;
@@ -19,21 +19,11 @@
     padding-top: 1rem;
     padding-bottom: 1rem;
     gap: 2rem;
-    position: relative;
-    @media (max-width: 768px) {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      margin: 0;
-      width: 100%;
-      max-width: 100%;
-    }
   }
 
   &__logo {
-    flex-shrink: 0;
     justify-self: start;
+    flex-shrink: 0;
   }
 
   &__img {
@@ -42,6 +32,7 @@
     display: block;
   }
 
+  // ── LINKS (desktop) ────────────────────────────────────
   &__links {
     display: flex;
     align-items: center;
@@ -50,40 +41,6 @@
     margin: 0;
     padding: 0;
     list-style: none;
-
-    @media (max-width: 768px) {
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0;
-      position: absolute;
-      top: calc(100% + 1px);
-      left: 0;
-      right: 0;
-      z-index: 99;
-      background: var(--nav-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      padding: 0 1.5rem;
-      max-height: 0;
-      overflow: hidden;
-      transition:
-        max-height 0.4s ease,
-        padding 0.4s ease;
-
-      &.is-open {
-        max-height: 400px;
-        padding: 0.5rem 1.5rem 1rem;
-      }
-    }
-  }
-
-  &__item {
-    @media (max-width: 768px) {
-      border-bottom: 0.5px solid var(--border);
-      font-size: $fs-lg;
-    }
   }
 
   &__link {
@@ -92,17 +49,11 @@
     font-size: $fs-sm;
     font-weight: $fw-medium;
     letter-spacing: 0.06em;
-    opacity: 0.6;
-    transition: opacity 0.3s ease;
+    opacity: 0.65;
+    transition: opacity 0.25s ease, color 0.25s ease;
     display: block;
     padding: 0.25rem 0;
     position: relative;
-
-    @media (max-width: 768px) {
-      padding: 0.85rem 0;
-      font-size: $fs-base !important;
-      opacity: 0.8;
-    }
 
     &::after {
       content: '';
@@ -111,129 +62,49 @@
       left: 0;
       width: 0;
       height: 1px;
-      background: $gold;
+      background: $emerald-light;
       transition: width 0.3s ease;
-
-      @media (max-width: 768px) {
-        display: none;
-      }
     }
 
     &:hover {
       opacity: 1;
-      &::after {
-        width: 100%;
-      }
-    }
-  }
-  &__link {
-    color: $text-muted;
-    text-decoration: none;
-    font-size: $fs-sm;
-    font-weight: $fw-medium;
-    letter-spacing: 0.06em;
-
-    transition: opacity 0.3s ease;
-    display: block;
-    padding: 0.25rem 0;
-    position: relative;
-
-    &::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: $gold;
-      transition: width 0.3s ease;
-    }
-
-    &:hover {
       color: $white;
-
-      &::after {
-        width: 100%;
-      }
+      &::after { width: 100%; }
     }
   }
 
+  // ── ACTIONS (toggle + hamburger) ───────────────────────
   &__actions {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 1rem;
   }
-
-  &__hamburger {
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    gap: 5px;
-    background: none;
-    border: 1px solid rgba(var(--black-rgb), 0.15);
-    border-radius: $radius-md;
-    cursor: pointer;
-    padding: 8px;
-    width: 40px;
-    height: 40px;
-
-    span {
-      display: block;
-      width: 18px;
-      height: 1.5px;
-      background: $text-muted;
-      border-radius: 2px;
-      transition: $transition-base;
-    }
-
-    &.is-active {
-      border-color: rgba(var(--gold-rgb), 0.4);
-      span:nth-child(1) {
-        transform: translateY(6.5px) rotate(45deg);
-      }
-      span:nth-child(2) {
-        opacity: 0;
-      }
-      span:nth-child(3) {
-        transform: translateY(-6.5px) rotate(-45deg);
-      }
-    }
-
-    @media (max-width: 768px) {
-      display: flex;
-    }
-  }
 }
 
+// ── HAMBURGER ─────────────────────────────────────────────
 .c-hamburger {
   display: none;
-  @media (max-width: 768px) {
-    display: block;
-  }
+
   label {
     display: block;
     cursor: pointer;
-    width: 100px;
-    height: 100px;
-    max-width: 100px;
-    max-height: 100px;
+    width: 44px;
+    height: 44px;
     position: relative;
   }
 
-  input {
-    display: none;
-  }
+  input { display: none; }
 
   svg {
-    width: 100px;
-    height: 100px;
+    width: 44px;
+    height: 44px;
     display: block;
   }
 
   path {
     fill: none;
-    stroke: $gold;
+    stroke: $emerald-light;
     stroke-width: 4;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -244,9 +115,7 @@
     transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
   }
 
-  circle {
-    display: none;
-  }
+  circle { display: none; }
 
   .line--1,
   .line--3 {
@@ -265,45 +134,107 @@
 }
 
 .cross input:checked + svg {
-  .line--1,
-  .line--3 {
-    --length: 22.627416998;
-  }
-  .line--2 {
-    --length: 0;
-  }
+  .line--1, .line--3 { --length: 22.627416998; }
+  .line--2 { --length: 0; }
 }
 
 .back input:checked + svg {
-  .line--1,
-  .line--3 {
-    --length: 8.602325267;
-  }
+  .line--1, .line--3 { --length: 8.602325267; }
 }
 
 .menu--2 {
-  .line--1,
-  .line--3 {
+  .line--1, .line--3 {
     --total-length: 111.22813415527344;
     --offset: -50.22813415527344;
   }
-  .line--2 {
-    --total-length: 99;
-  }
+  .line--2 { --total-length: 99; }
+
   input:checked + svg {
-    path {
-      transform: translateX(30px);
-    }
-    .line--1,
-    .line--3 {
-      --offset: -16.9705627485;
-    }
-    .line--2 {
-      --offset: -20;
-    }
+    path { transform: translateX(30px); }
+    .line--1, .line--3 { --offset: -16.9705627485; }
+    .line--2 { --offset: -20; }
   }
 }
-// ── TOGGLE ─────────────────────────────────────────
+
+// ── MOBILE ────────────────────────────────────────────────
+@media (max-width: 768px) {
+  .c-nav {
+    margin-left: 0;
+    margin-right: 0;
+
+    &__content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      // override Bootstrap .container so it fills the full nav width
+      max-width: 100% !important;
+      padding-left: 1.25rem !important;
+      padding-right: 1.25rem !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      gap: 0;
+    }
+
+    &__img { height: 38px; }
+
+    // Hide desktop links — replaced by slide-down panel
+    &__links {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 99;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 0 1.5rem;
+      margin: 0;
+      list-style: none;
+      background: var(--nav-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(128, 128, 128, 0.12);
+      max-height: 0;
+      overflow: hidden;
+      transition:
+        max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+        padding    0.45s cubic-bezier(0.22, 1, 0.36, 1);
+
+      &.is-open {
+        max-height: 500px;
+        padding: 0.75rem 1.5rem 1.25rem;
+      }
+    }
+
+    &__item {
+      border-bottom: 1px solid rgba(128, 128, 128, 0.1);
+
+      &:last-child { border-bottom: none; }
+    }
+
+    &__link {
+      padding: 1rem 0;
+      font-size: 1.05rem;
+      font-weight: $fw-semi;
+      letter-spacing: 0.04em;
+      opacity: 0.75;
+
+      &::after { display: none; }
+
+      &:hover,
+      &:active {
+        opacity: 1;
+        color: $emerald-light;
+      }
+    }
+  }
+
+  .c-hamburger {
+    display: block;
+  }
+}
+
+// ── TOGGLE ────────────────────────────────────────────────
 .c-toggle {
   cursor: pointer;
   display: flex;
@@ -340,7 +271,6 @@
     z-index: 1;
   }
 
-  // sun icon — always visible left side
   &__sun,
   &__moon {
     position: absolute;
@@ -361,7 +291,6 @@
     opacity: 0.5;
   }
 
-  // when checked (dark mode)
   &__input:checked ~ &__track {
     background: rgba(6, 64, 43, 0.3);
     border-color: rgba(26, 138, 82, 0.3);
@@ -371,11 +300,7 @@
       background: $emerald-light;
     }
 
-    .c-toggle__sun {
-      opacity: 0.5;
-    }
-    .c-toggle__moon {
-      opacity: 1;
-    }
+    .c-toggle__sun { opacity: 0.5; }
+    .c-toggle__moon { opacity: 1; }
   }
 }

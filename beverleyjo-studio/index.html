@@ -18,9 +18,9 @@
       </div>
 
       <ul class="c-nav__links">
-        <li class="c-nav__item"><a class="c-nav__link" href="#">Mijn werk</a></li>
-        <li class="c-nav__item"><a class="c-nav__link" href="#">Over mij</a></li>
-        <li class="c-nav__item"><a class="c-nav__link" href="#">Skills</a></li>
+        <li class="c-nav__item"><a class="c-nav__link" href="#uitgelicht">Uitgelicht</a></li>
+        <li class="c-nav__item"><a class="c-nav__link" href="#over-mij">Over mij</a></li>
+        <li class="c-nav__item"><a class="c-nav__link" href="#projecten">Projecten</a></li>
         <li class="c-nav__item"><a class="c-nav__link" href="#contact">Contact</a></li>
       </ul>
 
@@ -61,7 +61,7 @@
     </nav>
   </div>
 
-  <div class="c-heading">
+  <div class="c-heading" id="home">
     <div class="c-heading__inner container">
 
       <h1 class="c-heading__title" data-reveal>
@@ -70,12 +70,11 @@
       </h1>
 
       <p class="c-heading__text" data-reveal>
-        Creatieve junior developer uit België die esthetiek en techniek combineert<br>
-        tot digitale ervaringen die écht blijven hangen.
+        Creatieve junior developer uit België die esthetiek en techniek combineert tot digitale ervaringen die écht blijven hangen.
       </p>
 
       <div class="c-heading__group" data-reveal>
-        <a href="#projectsGrid" class="c-btn c-btn--primary">Bekijk mijn werk</a>
+        <a href="#uitgelicht" class="c-btn c-btn--primary">Bekijk mijn werk</a>
         <a href="#contact" class="c-btn c-btn--secondary">Neem contact op</a>
       </div>
 
@@ -89,9 +88,9 @@
     </div>
   </div>
 
-  <section class="c-services container">
-    <h2 class="c-services__heading">Mijn services</h2>
-    <div class="c-services__cards">
+  <section class="c-services container" id="services">
+    <h2 class="c-services__heading" data-sr>Mijn services</h2>
+    <div class="c-services__cards" data-sr-stagger>
       <div class="c-services__card">
         <span class="c-services__card-icon">✦</span>
         <h3 class="c-services__card-title">UX Design</h3>
@@ -110,47 +109,43 @@
     </div>
   </section>
 
-  <section class="c-featured container">
-    <h2 class="c-featured__heading">Uitgelichte projecten</h2>
-    <div class="c-featured__grid">
+  <section class="c-featured container" id="uitgelicht">
+    <h2 class="c-featured__heading" data-sr>Uitgelichte projecten</h2>
+    <div class="c-featured__grid" data-sr data-sr-delay="0.15">
       <div class="c-featured__item c-featured__item--featured c-featured__item--reveal c-featured__item--slot-featured" style="background-image: url(./honing-visite.jpg);">
         <div class="c-featured__desc">
-          <h3>Dota 2</h3>
-          <p>Dota 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the
-            Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
+          <h3>E-commerce redesign</h3>
+          <p>Een volledige herontwerp van een webshop met focus op conversie en gebruikservaring.</p>
           <a href="#" class="c-featured__link">Project bekijken <span class="c-featured__arrow">→</span></a>
         </div>
       </div>
       <div class="c-featured__item c-featured__item--slot-top" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/winter-3.jpg);">
         <div class="c-featured__desc">
-          <h3>The Witcher 3</h3>
-          <p>The Witcher 3 is a multiplayer online battle arena by Valve. The game is a sequel to Defense
-            of the Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
+          <h3>Portfolio website</h3>
+          <p>Mijn eigen portfolio — gebouwd met Vite, SCSS en vanilla JavaScript.</p>
           <a href="#" class="c-featured__link">Project bekijken <span class="c-featured__arrow">→</span></a>
         </div>
       </div>
       <div class="c-featured__item c-featured__item--slot-mid" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/rdr-2.jpg);">
         <div class="c-featured__desc">
-          <h3>RDR 2</h3>
-          <p>RDR 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the
-            Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
+          <h3>Brand identity systeem</h3>
+          <p>Een volledig visueel identiteitssysteem inclusief logo, typografie en kleurpalet.</p>
           <a href="#" class="c-featured__link">Project bekijken <span class="c-featured__arrow">→</span></a>
         </div>
       </div>
       <div class="c-featured__item c-featured__item--slot-bottom" style="background-image: url(https://www.yudiz.com/codepen/expandable-animated-card-slider/pubg.jpg);">
         <div class="c-featured__desc">
-          <h3>PUBG Mobile</h3>
-          <p>PUBG 2 is a multiplayer online battle arena by Valve. The game is a sequel to Defense of the
-            Ancients, which was a community-created mod for Blizzard Entertainment's Warcraft III.</p>
+          <h3>Dashboard UI kit</h3>
+          <p>Een modulaire component library voor data dashboards, ontworpen in Figma.</p>
           <a href="#" class="c-featured__link">Project bekijken <span class="c-featured__arrow">→</span></a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="c-about container">
+  <section class="c-about container" id="over-mij">
 
-    <div class="c-about__d">
+    <div class="c-about__d" data-sr>
       <div class="c-about__d-deco" aria-hidden="true">
         <img class="c-about__d-deco-img c-about__d-deco-img--dark" src="./logo-dark-sm.png" alt="">
         <img class="c-about__d-deco-img c-about__d-deco-img--light" src="./logo-light-sm.png" alt="">
@@ -179,9 +174,9 @@
 
   </section>
 
-  <section class="c-projects container">
+  <section class="c-projects container" id="projecten">
     <div class="c-projects__header">
-      <h2 class="c-projects__heading">Alle projecten</h2>
+      <h2 class="c-projects__heading" data-sr>Alle projecten</h2>
       <div class="c-projects__filters">
         <button class="c-projects__filter c-projects__filter--active" data-filter="all">Alles</button>
         <button class="c-projects__filter" data-filter="school">School</button>
@@ -201,7 +196,7 @@
 
   <!-- CONTACT -->
   <section class="c-contact container" id="contact">
-    <div class="c-contact__inner">
+    <div class="c-contact__inner" data-sr>
 
       <div class="c-contact__left">
         <h2 class="c-contact__heading">Laten we<br><em>samenwerken.</em></h2>
@@ -247,7 +242,7 @@
     </div>
   </section>
 
-  <footer class="c-footer">
+  <footer class="c-footer" data-sr>
     <div class="c-footer__inner container">
 
       <div class="c-footer__logo">
@@ -255,9 +250,9 @@
       </div>
 
       <nav class="c-footer__nav" aria-label="Footer navigatie">
-        <a class="c-footer__link" href="#">Mijn werk</a>
-        <a class="c-footer__link" href="#">Over mij</a>
-        <a class="c-footer__link" href="#">Skills</a>
+        <a class="c-footer__link" href="#uitgelicht">Uitgelicht</a>
+        <a class="c-footer__link" href="#over-mij">Over mij</a>
+        <a class="c-footer__link" href="#projecten">Projecten</a>
         <a class="c-footer__link" href="#contact">Contact</a>
       </nav>
 

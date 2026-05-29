@@ -1,155 +1,101 @@
-function initFeaturedGrid() {
+// ── FEATURED CARD SWAP (FLIP ghost animation) ─────────
+const FEATURED_SLOT = 'c-featured__item--slot-featured';
+const FEATURED_MOD  = 'c-featured__item--featured';
+const REVEAL_MOD    = 'c-featured__item--reveal';
+const SLOTS         = ['slot-featured', 'slot-top', 'slot-mid', 'slot-bottom'];
+
+function getSlot(el) {
+  for (const s of SLOTS) {
+    if (el.classList.contains(`c-featured__item--${s}`)) return s;
+  }
+  return null;
+}
+
+function swapCards(clickedItem) {
+  const grid    = document.querySelector('.c-featured__grid');
+  if (!grid) return;
+
+  const featured = grid.querySelector(`.${FEATURED_SLOT}`);
+  if (!featured || clickedItem === featured) return;
+
+  // 1. Record positions BEFORE swap (FLIP: First)
+  const featRect   = featured.getBoundingClientRect();
+  const clickRect  = clickedItem.getBoundingClientRect();
+
+  // 2. Swap slot classes
+  const featSlot   = getSlot(featured);
+  const clickSlot  = getSlot(clickedItem);
+
+  featured.classList.remove(`c-featured__item--${featSlot}`);
+  featured.classList.add(`c-featured__item--${clickSlot}`);
+  featured.classList.remove(FEATURED_SLOT, FEATURED_MOD, REVEAL_MOD);
+
+  clickedItem.classList.remove(`c-featured__item--${clickSlot}`);
+  clickedItem.classList.add(FEATURED_SLOT, FEATURED_MOD, REVEAL_MOD);
+
+  // 3. Record positions AFTER swap (FLIP: Last)
+  const featRectAfter  = featured.getBoundingClientRect();
+  const clickRectAfter = clickedItem.getBoundingClientRect();
+
+  // 4. Create ghost clones at old positions (FLIP: Invert)
+  function makeGhost(el, from, to) {
+    const ghost = el.cloneNode(true);
+    ghost.style.cssText = `
+      position: fixed;
+      left: ${from.left}px;
+      top: ${from.top}px;
+      width: ${from.width}px;
+      height: ${from.height}px;
+      margin: 0;
+      pointer-events: none;
+      z-index: 999;
+      border-radius: 16px;
+      background-image: ${getComputedStyle(el).backgroundImage};
+      background-size: cover;
+      background-position: center;
+      transition: left 0.52s cubic-bezier(0.22,1,0.36,1),
+                  top  0.52s cubic-bezier(0.22,1,0.36,1),
+                  width  0.52s cubic-bezier(0.22,1,0.36,1),
+                  height 0.52s cubic-bezier(0.22,1,0.36,1);
+    `;
+    document.body.appendChild(ghost);
+
+    // Hide the real element while ghost animates
+    el.style.opacity = '0';
+
+    // Animate ghost to new position (FLIP: Play)
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      ghost.style.left   = `${to.left}px`;
+      ghost.style.top    = `${to.top}px`;
+      ghost.style.width  = `${to.width}px`;
+      ghost.style.height = `${to.height}px`;
+    }));
+
+    return ghost;
+  }
+
+  const ghostFeat  = makeGhost(featured,     featRect,  featRectAfter);
+  const ghostClick = makeGhost(clickedItem,  clickRect, clickRectAfter);
+
+  // 5. After animation: restore opacity, remove ghosts
+  setTimeout(() => {
+    featured.style.opacity    = '';
+    clickedItem.style.opacity = '';
+    ghostFeat.remove();
+    ghostClick.remove();
+  }, 560);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
   const grid = document.querySelector('.c-featured__grid');
   if (!grid) return;
 
-  const items = Array.from(grid.querySelectorAll('.c-featured__item'));
-
-  const slotClasses = [
-    'c-featured__item--slot-featured',
-    'c-featured__item--slot-top',
-    'c-featured__item--slot-mid',
-    'c-featured__item--slot-bottom',
-  ];
-  const featuredClass = 'c-featured__item--featured';
-  const revealClass = 'c-featured__item--reveal';
-  let isAnimating = false;
-
-  const getSlotClass = (item) =>
-    slotClasses.find((slotClass) => item.classList.contains(slotClass));
-
-  const setSlotClass = (item, slotClass) => {
-    slotClasses.forEach((currentSlotClass) => {
-      item.classList.remove(currentSlotClass);
-    });
-
-    item.classList.add(slotClass);
-  };
-
-  const createGhost = (item, rect) => {
-    const ghost = item.cloneNode(true);
-    ghost.classList.add('c-featured__item--ghost');
-    ghost.style.position = 'fixed';
-    ghost.style.left = `${rect.left}px`;
-    ghost.style.top = `${rect.top}px`;
-    ghost.style.width = `${rect.width}px`;
-    ghost.style.height = `${rect.height}px`;
-    ghost.style.margin = '0';
-    ghost.style.zIndex = '20';
-    ghost.style.pointerEvents = 'none';
-    ghost.style.transition = 'none';
-    ghost.style.transform = 'none';
-    ghost.style.willChange = 'left, top, width, height';
-    ghost.style.backfaceVisibility = 'hidden';
-    ghost.style.contain = 'paint';
-    ghost.style.borderRadius = getComputedStyle(item).borderRadius;
-    ghost.style.opacity = '1';
-    ghost.style.boxSizing = 'border-box';
-    ghost.style.overflow = 'hidden';
-    document.body.appendChild(ghost);
-    return ghost;
-  };
-
-  const animateSwap = (currentFeaturedItem, nextItem) => {
-    if (isAnimating) return;
-    isAnimating = true;
-
-    // Hide descriptions first so the text change does not compete with
-    // the layout movement.
-    currentFeaturedItem.classList.remove(revealClass);
-    nextItem.classList.remove(revealClass);
-
-    const currentStartRect = currentFeaturedItem.getBoundingClientRect();
-    const nextStartRect = nextItem.getBoundingClientRect();
-    const nextSlotClass = getSlotClass(nextItem);
-
-    const currentGhost = createGhost(currentFeaturedItem, currentStartRect);
-    const nextGhost = createGhost(nextItem, nextStartRect);
-
-    currentFeaturedItem.style.opacity = '0';
-    nextItem.style.opacity = '0';
-
-    setSlotClass(currentFeaturedItem, nextSlotClass);
-    setSlotClass(nextItem, 'c-featured__item--slot-featured');
-
-    currentFeaturedItem.classList.remove(featuredClass);
-    nextItem.classList.add(featuredClass);
-
-    let cleanedUp = false;
-    const finalizeSwap = () => {
-      currentFeaturedItem.classList.remove(revealClass);
-      nextItem.classList.add(revealClass);
-
-      currentFeaturedItem.style.opacity = '';
-      nextItem.style.opacity = '';
-
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          currentGhost.remove();
-          nextGhost.remove();
-          isAnimating = false;
-        });
-      });
-    };
-
-    const cleanup = () => {
-      if (cleanedUp) return;
-      cleanedUp = true;
-      window.clearTimeout(cleanupTimer);
-      finalizeSwap();
-    };
-
-    const cleanupTimer = window.setTimeout(() => {
-      cleanup();
-    }, 560);
-
-    requestAnimationFrame(() => {
-      const currentEndRect = currentFeaturedItem.getBoundingClientRect();
-      const nextEndRect = nextItem.getBoundingClientRect();
-
-      const currentDeltaX = currentEndRect.left - currentStartRect.left;
-      const currentDeltaY = currentEndRect.top - currentStartRect.top;
-      const currentScaleX = currentEndRect.width / currentStartRect.width;
-      const currentScaleY = currentEndRect.height / currentStartRect.height;
-
-      const nextDeltaX = nextEndRect.left - nextStartRect.left;
-      const nextDeltaY = nextEndRect.top - nextStartRect.top;
-      const nextScaleX = nextEndRect.width / nextStartRect.width;
-      const nextScaleY = nextEndRect.height / nextStartRect.height;
-
-      currentGhost.style.transition =
-        'left 0.55s cubic-bezier(0.22, 1, 0.36, 1), top 0.55s cubic-bezier(0.22, 1, 0.36, 1), width 0.55s cubic-bezier(0.22, 1, 0.36, 1), height 0.55s cubic-bezier(0.22, 1, 0.36, 1)';
-      nextGhost.style.transition =
-        'left 0.55s cubic-bezier(0.22, 1, 0.36, 1), top 0.55s cubic-bezier(0.22, 1, 0.36, 1), width 0.55s cubic-bezier(0.22, 1, 0.36, 1), height 0.55s cubic-bezier(0.22, 1, 0.36, 1)';
-
-      currentGhost.style.left = `${currentEndRect.left}px`;
-      currentGhost.style.top = `${currentEndRect.top}px`;
-      currentGhost.style.width = `${currentEndRect.width}px`;
-      currentGhost.style.height = `${currentEndRect.height}px`;
-
-      nextGhost.style.left = `${nextEndRect.left}px`;
-      nextGhost.style.top = `${nextEndRect.top}px`;
-      nextGhost.style.width = `${nextEndRect.width}px`;
-      nextGhost.style.height = `${nextEndRect.height}px`;
-    });
-  };
-
-  items.forEach((item) => {
-    item.addEventListener('click', () => {
-      const currentFeaturedItem = grid.querySelector(
-        '.c-featured__item--featured',
-      );
-
-      if (!currentFeaturedItem || item === currentFeaturedItem) {
-        return;
-      }
-
-      animateSwap(currentFeaturedItem, item);
-    });
+  grid.addEventListener('click', (e) => {
+    const item = e.target.closest('.c-featured__item');
+    if (!item) return;
+    // Only swap if clicking a non-featured small card
+    if (!item.classList.contains(FEATURED_SLOT)) {
+      swapCards(item);
+    }
   });
-}
-
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initFeaturedGrid);
-} else {
-  initFeaturedGrid();
-}
+});
