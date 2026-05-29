@@ -1,4 +1,4 @@
-let body, toggle, hamburgerInput, navLinks, logo;
+let body, toggle, hamburgerInput, navLinks, logo, footerLogo;
 
 const LOGO_LIGHT = '/logo-dark.png';
 const LOGO_DARK = '/logo-light.png';
@@ -28,6 +28,7 @@ const init = function () {
   hamburgerInput = document.querySelector('.menu--2 input');
   navLinks = document.querySelector('.c-nav__links');
   logo = document.querySelector('.c-nav__img');
+  footerLogo = document.querySelector('.c-footer__logo .c-nav__img');
 
   // theme toggle
   if (toggle) {
@@ -70,8 +71,9 @@ const toggleDarkmode = function () {
 };
 
 const updateLogo = function () {
-  if (!logo) return;
-  logo.src = body.classList.contains('o-darkmode') ? LOGO_DARK : LOGO_LIGHT;
+  const isDark = body.classList.contains('o-darkmode');
+  if (logo) logo.src = isDark ? LOGO_DARK : LOGO_LIGHT;
+  if (footerLogo) footerLogo.src = isDark ? LOGO_DARK : LOGO_LIGHT;
 };
 
 const saveToLocalStorage = function () {
