@@ -1,8 +1,17 @@
 @use './variables' as *;
+
+h2 {
+  color: $white;
+  font-family: $font-display;
+  font-size: $fs-2xl;
+  margin-bottom: 2rem;
+}
 h3 {
   color: $white;
   font-size: $fs-lg;
+  margin-bottom: 1rem;
 }
+
 p {
   color: $white;
   font-size: $fs-base;

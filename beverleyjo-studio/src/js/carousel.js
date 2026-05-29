@@ -38,6 +38,11 @@ function initFeaturedGrid() {
     ghost.style.pointerEvents = 'none';
     ghost.style.transition = 'none';
     ghost.style.transform = 'none';
+    ghost.style.willChange = 'left, top, width, height';
+    ghost.style.backfaceVisibility = 'hidden';
+    ghost.style.contain = 'paint';
+    ghost.style.borderRadius = getComputedStyle(item).borderRadius;
+    ghost.style.opacity = '1';
     ghost.style.boxSizing = 'border-box';
     ghost.style.overflow = 'hidden';
     document.body.appendChild(ghost);
@@ -48,6 +53,11 @@ function initFeaturedGrid() {
     if (isAnimating) return;
     isAnimating = true;
 
+    // Hide descriptions first so the text change does not compete with
+    // the layout movement.
+    currentFeaturedItem.classList.remove(revealClass);
+    nextItem.classList.remove(revealClass);
+
     const currentStartRect = currentFeaturedItem.getBoundingClientRect();
     const nextStartRect = nextItem.getBoundingClientRect();
     const nextSlotClass = getSlotClass(nextItem);
@@ -55,65 +65,72 @@ function initFeaturedGrid() {
     const currentGhost = createGhost(currentFeaturedItem, currentStartRect);
     const nextGhost = createGhost(nextItem, nextStartRect);
 
-    currentFeaturedItem.style.visibility = 'hidden';
-    nextItem.style.visibility = 'hidden';
+    currentFeaturedItem.style.opacity = '0';
+    nextItem.style.opacity = '0';
+
+    setSlotClass(currentFeaturedItem, nextSlotClass);
+    setSlotClass(nextItem, 'c-featured__item--slot-featured');
+
+    currentFeaturedItem.classList.remove(featuredClass);
+    nextItem.classList.add(featuredClass);
 
     let cleanedUp = false;
     const finalizeSwap = () => {
-      setSlotClass(currentFeaturedItem, nextSlotClass);
-      setSlotClass(nextItem, 'c-featured__item--slot-featured');
-
-      currentFeaturedItem.classList.remove(featuredClass);
       currentFeaturedItem.classList.remove(revealClass);
-      nextItem.classList.add(featuredClass);
       nextItem.classList.add(revealClass);
 
-      currentFeaturedItem.style.visibility = '';
-      nextItem.style.visibility = '';
-      isAnimating = false;
+      currentFeaturedItem.style.opacity = '';
+      nextItem.style.opacity = '';
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          currentGhost.remove();
+          nextGhost.remove();
+          isAnimating = false;
+        });
+      });
     };
 
     const cleanup = () => {
       if (cleanedUp) return;
       cleanedUp = true;
-
-      currentGhost.removeEventListener('transitionend', cleanup);
-      nextGhost.removeEventListener('transitionend', cleanup);
-      currentGhost.removeEventListener('transitioncancel', cleanup);
-      nextGhost.removeEventListener('transitioncancel', cleanup);
       window.clearTimeout(cleanupTimer);
-      currentGhost.remove();
-      nextGhost.remove();
       finalizeSwap();
     };
 
-    const transitionValue =
-      'left 0.45s cubic-bezier(0.22, 1, 0.36, 1), top 0.45s cubic-bezier(0.22, 1, 0.36, 1), width 0.45s cubic-bezier(0.22, 1, 0.36, 1), height 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, filter 0.35s ease';
-
-    const cleanupTimer = window.setTimeout(cleanup, 700);
+    const cleanupTimer = window.setTimeout(() => {
+      cleanup();
+    }, 560);
 
     requestAnimationFrame(() => {
-      currentGhost.style.transition = transitionValue;
-      nextGhost.style.transition = transitionValue;
+      const currentEndRect = currentFeaturedItem.getBoundingClientRect();
+      const nextEndRect = nextItem.getBoundingClientRect();
 
-      currentGhost.style.left = `${nextStartRect.left}px`;
-      currentGhost.style.top = `${nextStartRect.top}px`;
-      currentGhost.style.width = `${nextStartRect.width}px`;
-      currentGhost.style.height = `${nextStartRect.height}px`;
-      currentGhost.style.boxShadow = getComputedStyle(nextItem).boxShadow;
+      const currentDeltaX = currentEndRect.left - currentStartRect.left;
+      const currentDeltaY = currentEndRect.top - currentStartRect.top;
+      const currentScaleX = currentEndRect.width / currentStartRect.width;
+      const currentScaleY = currentEndRect.height / currentStartRect.height;
 
-      nextGhost.style.left = `${currentStartRect.left}px`;
-      nextGhost.style.top = `${currentStartRect.top}px`;
-      nextGhost.style.width = `${currentStartRect.width}px`;
-      nextGhost.style.height = `${currentStartRect.height}px`;
-      nextGhost.style.boxShadow =
-        getComputedStyle(currentFeaturedItem).boxShadow;
+      const nextDeltaX = nextEndRect.left - nextStartRect.left;
+      const nextDeltaY = nextEndRect.top - nextStartRect.top;
+      const nextScaleX = nextEndRect.width / nextStartRect.width;
+      const nextScaleY = nextEndRect.height / nextStartRect.height;
+
+      currentGhost.style.transition =
+        'left 0.55s cubic-bezier(0.22, 1, 0.36, 1), top 0.55s cubic-bezier(0.22, 1, 0.36, 1), width 0.55s cubic-bezier(0.22, 1, 0.36, 1), height 0.55s cubic-bezier(0.22, 1, 0.36, 1)';
+      nextGhost.style.transition =
+        'left 0.55s cubic-bezier(0.22, 1, 0.36, 1), top 0.55s cubic-bezier(0.22, 1, 0.36, 1), width 0.55s cubic-bezier(0.22, 1, 0.36, 1), height 0.55s cubic-bezier(0.22, 1, 0.36, 1)';
+
+      currentGhost.style.left = `${currentEndRect.left}px`;
+      currentGhost.style.top = `${currentEndRect.top}px`;
+      currentGhost.style.width = `${currentEndRect.width}px`;
+      currentGhost.style.height = `${currentEndRect.height}px`;
+
+      nextGhost.style.left = `${nextEndRect.left}px`;
+      nextGhost.style.top = `${nextEndRect.top}px`;
+      nextGhost.style.width = `${nextEndRect.width}px`;
+      nextGhost.style.height = `${nextEndRect.height}px`;
     });
-
-    currentGhost.addEventListener('transitionend', cleanup);
-    nextGhost.addEventListener('transitionend', cleanup);
-    currentGhost.addEventListener('transitioncancel', cleanup);
-    nextGhost.addEventListener('transitioncancel', cleanup);
   };
 
   items.forEach((item) => {
