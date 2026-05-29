@@ -175,13 +175,26 @@
 
   // ── RESPONSIVE ────────────────────────────────────
   @media (max-width: 991px) {
+    margin-bottom: 4rem;
+
     &__inner {
       grid-template-columns: 1fr;
-      gap: 3rem;
+      gap: 2.5rem;
     }
 
-    &__left {
-      position: static;
+    &__left { position: static; }
+
+    &__heading { font-size: clamp(2rem, 6vw, 3rem); }
+  }
+
+  @media (max-width: 479px) {
+    &__heading { font-size: clamp(1.8rem, 8vw, 2.6rem); }
+
+    &__submit {
+      width: 100%;
+      justify-content: center;
     }
+
+    &__input { font-size: $fs-base; } // prevents iOS zoom on focus
   }
 }

@@ -44,6 +44,14 @@ const init = function () {
       const isOpen = hamburgerInput.checked;
       navLinks.classList.toggle('is-open', isOpen);
     });
+
+    // close menu when a nav link is tapped
+    navLinks.querySelectorAll('.c-nav__link').forEach(function (link) {
+      link.addEventListener('click', function () {
+        hamburgerInput.checked = false;
+        navLinks.classList.remove('is-open');
+      });
+    });
   }
 
   // restore saved theme on load

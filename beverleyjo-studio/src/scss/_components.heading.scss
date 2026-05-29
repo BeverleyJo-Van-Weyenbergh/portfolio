@@ -101,8 +101,24 @@
   // ── RESPONSIVE ────────────────────────────────────
   @media (max-width: 767px) {
     min-height: 75vh;
+    padding-top: 4.5rem;
+    padding-bottom: 3rem;
 
-    &__title { font-size: clamp(2.4rem, 10vw, 3.5rem); }
-    &__text br { display: none; }
+    &__inner { gap: 1.25rem; }
+    &__title { font-size: clamp(2.2rem, 9vw, 3.2rem); }
+    &__text  { font-size: $fs-sm; max-width: 38ch; }
+  }
+
+  @media (max-width: 480px) {
+    min-height: 70vh;
+    padding-top: 4rem;
+
+    &__title { font-size: clamp(2rem, 8.5vw, 2.8rem); }
+
+    &__group {
+      flex-direction: column;
+      width: 100%;
+      gap: 0.75rem;
+    }
   }
 }

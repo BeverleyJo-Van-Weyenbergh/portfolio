@@ -60,7 +60,15 @@
   }
 
   // ── RESPONSIVE ────────────────────────────────────
+  @media (max-width: 991px) and (min-width: 768px) {
+    &__cards { grid-template-columns: repeat(2, 1fr); }
+  }
+
   @media (max-width: 767px) {
-    &__cards { grid-template-columns: 1fr; }
+    margin-bottom: 4rem;
+
+    &__heading { font-size: $fs-xl; margin-bottom: 1.5rem; }
+    &__cards   { grid-template-columns: 1fr; gap: 1rem; }
+    &__card    { padding: 1.5rem; }
   }
 }

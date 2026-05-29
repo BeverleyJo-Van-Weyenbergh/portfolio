@@ -102,24 +102,28 @@
 
   // ── RESPONSIVE ─────────────────────────────────────
   @media (max-width: 991px) {
+    margin-bottom: 4rem;
+
     &__d {
+      padding: 2.5rem;
+
       &-inner {
         grid-template-columns: 1fr;
-        gap: 2.5rem;
+        gap: 2rem;
       }
 
       &-left { position: static; }
 
-      &-deco {
-        font-size: clamp(8rem, 30vw, 14rem);
-        opacity: 0.5;
-      }
+      &-deco { width: clamp(10rem, 40vw, 18rem); }
     }
+
+    &__heading { font-size: clamp(2rem, 6vw, 3rem); }
   }
 
   @media (max-width: 575px) {
-    &__d {
-      padding: 2rem;
-    }
+    &__d { padding: 1.5rem; }
+    &__heading { font-size: clamp(1.8rem, 8vw, 2.6rem); }
+    &__group-items { gap: 0.3rem; }
+    &__group-item  { font-size: 10px; padding: 4px 10px; }
   }
 }
