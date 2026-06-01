@@ -1,3 +1,5 @@
+import { PROJECTS } from '../data/projects.js';
+
 // ── FEATURED CARD SWAP (FLIP ghost animation) ─────────
 const FEATURED_SLOT = 'c-featured__item--slot-featured';
 const FEATURED_MOD  = 'c-featured__item--featured';
@@ -36,6 +38,10 @@ function swapCards(clickedItem) {
   // 3. Record positions AFTER swap (FLIP: Last)
   const featRectAfter  = featured.getBoundingClientRect();
   const clickRectAfter = clickedItem.getBoundingClientRect();
+
+  // Freeze CSS transitions on both items so box-shadow/transform don't interfere
+  featured.style.transition    = 'none';
+  clickedItem.style.transition = 'none';
 
   // 4. Create ghost clones at old positions (FLIP: Invert)
   function makeGhost(el, from, to) {
@@ -77,8 +83,10 @@ function swapCards(clickedItem) {
   const ghostFeat  = makeGhost(featured,     featRect,  featRectAfter);
   const ghostClick = makeGhost(clickedItem,  clickRect, clickRectAfter);
 
-  // 5. After animation: restore opacity, remove ghosts
+  // 5. After animation: restore opacity, re-enable transitions, remove ghosts
   setTimeout(() => {
+    featured.style.transition    = '';
+    clickedItem.style.transition = '';
     featured.style.opacity    = '';
     clickedItem.style.opacity = '';
     ghostFeat.remove();
@@ -90,10 +98,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const grid = document.querySelector('.c-featured__grid');
   if (!grid) return;
 
+  // ── RENDER FEATURED FROM DATA ──────────────────────────
+  const featured = PROJECTS.filter(p => p.featured).slice(0, 4);
+  const slots = ['slot-featured', 'slot-top', 'slot-mid', 'slot-bottom'];
+
+  featured.forEach((project, i) => {
+    const item = document.createElement('div');
+    item.className = `c-featured__item c-featured__item--${slots[i]}`;
+    if (i === 0) item.classList.add('c-featured__item--featured', 'c-featured__item--reveal', 'c-featured__item--slot-featured');
+    item.style.backgroundImage = `url('${project.featuredImage}')`;
+    item.innerHTML = `
+      <div class="c-featured__desc">
+        <h3>${project.name}</h3>
+        <p>${project.descriptionShort}</p>
+        <a href="./project.html?slug=${project.slug}" class="c-featured__link">Project bekijken <span class="c-featured__arrow">→</span></a>
+      </div>`;
+    grid.appendChild(item);
+  });
+
   grid.addEventListener('click', (e) => {
     const item = e.target.closest('.c-featured__item');
     if (!item) return;
-    // Only swap if clicking a non-featured small card
     if (!item.classList.contains(FEATURED_SLOT)) {
       swapCards(item);
     }

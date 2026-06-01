@@ -1,16 +1,4 @@
-const PROJECTS = [
-  { id: 1, name: 'E-commerce redesign',   img: './honing-visite.jpg', tags: ['stage'], link: '#' },
-  { id: 2, name: 'Portfolio website',     img: 'https://www.yudiz.com/codepen/expandable-animated-card-slider/winter-3.jpg', tags: ['eigen'], link: '#' },
-  { id: 3, name: 'Brand identity systeem',img: 'https://www.yudiz.com/codepen/expandable-animated-card-slider/rdr-2.jpg',   tags: ['school'], link: '#' },
-  { id: 4, name: 'Dashboard UI kit',      img: 'https://www.yudiz.com/codepen/expandable-animated-card-slider/pubg.jpg',    tags: ['stage'], link: '#' },
-  { id: 5, name: 'Mobile app concept',    img: './honing-visite.jpg', tags: ['school'], link: '#' },
-  { id: 6, name: 'WordPress platform',    img: 'https://www.yudiz.com/codepen/expandable-animated-card-slider/winter-3.jpg', tags: ['eigen'], link: '#' },
-  { id: 7, name: 'Social media campagne', img: 'https://www.yudiz.com/codepen/expandable-animated-card-slider/rdr-2.jpg',   tags: ['school'], link: '#' },
-  { id: 8, name: 'Webshop redesign',      img: 'https://www.yudiz.com/codepen/expandable-animated-card-slider/pubg.jpg',    tags: ['stage'], link: '#' },
-  { id: 9, name: 'Logo & huisstijl',      img: './honing-visite.jpg', tags: ['eigen'], link: '#' },
-];
-
-const TAG_LABELS = { school: 'School', stage: 'Stage', eigen: 'Eigen project', ux: 'UX Design', dev: 'Development', brand: 'Branding' };
+import { PROJECTS, TAG_LABELS } from '../data/projects.js';
 const PER_PAGE = 6;
 
 const grid    = document.getElementById('projectsGrid');
@@ -45,8 +33,8 @@ function render(direction = 'none') {
     else                           card.classList.add('c-projects__card--in-up');
 
     card.innerHTML = `
-      <a href="${project.link}" class="c-projects__card-link">
-        <div class="c-projects__card-img" style="background-image: url('${project.img}')"></div>
+      <a href="./project.html?slug=${project.slug}" class="c-projects__card-link">
+        <div class="c-projects__card-img" style="background-image: url('${project.featuredImage}')"></div>
         <div class="c-projects__card-body">
           <div class="c-projects__card-tags">
             ${project.tags.map(t => `<span class="c-projects__card-tag c-projects__card-tag--${t}">${TAG_LABELS[t] || t}</span>`).join('')}

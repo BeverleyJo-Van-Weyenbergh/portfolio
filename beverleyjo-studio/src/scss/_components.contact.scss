@@ -2,6 +2,7 @@
 
 .c-contact {
   margin-bottom: 6.25rem;
+  margin-top: 6.25rem;
 
   &__inner {
     display: grid;
@@ -137,7 +138,9 @@
     font-weight: $fw-semi;
     color: $black;
     cursor: pointer;
-    transition: opacity 0.2s ease, gap 0.2s ease;
+    transition:
+      opacity 0.2s ease,
+      gap 0.2s ease;
 
     &:hover {
       opacity: 0.85;
@@ -182,19 +185,27 @@
       gap: 2.5rem;
     }
 
-    &__left { position: static; }
+    &__left {
+      position: static;
+    }
 
-    &__heading { font-size: clamp(2rem, 6vw, 3rem); }
+    &__heading {
+      font-size: clamp(2rem, 6vw, 3rem);
+    }
   }
 
   @media (max-width: 479px) {
-    &__heading { font-size: clamp(1.8rem, 8vw, 2.6rem); }
+    &__heading {
+      font-size: clamp(1.8rem, 8vw, 2.6rem);
+    }
 
     &__submit {
       width: 100%;
       justify-content: center;
     }
 
-    &__input { font-size: $fs-base; } // prevents iOS zoom on focus
+    &__input {
+      font-size: $fs-base;
+    } // prevents iOS zoom on focus
   }
 }

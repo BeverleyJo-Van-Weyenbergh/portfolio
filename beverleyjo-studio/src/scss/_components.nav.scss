@@ -1,5 +1,21 @@
 @use './variables' as *;
 
+// ── NAV BLUR LAYER (separate element to avoid Chrome nested backdrop-filter bug)
+.c-nav-blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 81px;
+  z-index: 99;
+  background: var(--nav-bg);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  pointer-events: none;
+  transition: $transition-theme;
+}
+
 // ── NAV WRAPPER ───────────────────────────────────────────
 .c-nav {
   position: fixed;
@@ -7,10 +23,8 @@
   left: 0;
   right: 0;
   z-index: 100;
-  background: var(--nav-bg);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: transparent;
+  border-bottom: none;
   transition: $transition-theme;
 
   // ── NAV INNER ──────────────────────────────────────────
@@ -52,7 +66,9 @@
     font-weight: $fw-medium;
     letter-spacing: 0.06em;
     opacity: 0.65;
-    transition: opacity 0.25s ease, color 0.25s ease;
+    transition:
+      opacity 0.25s ease,
+      color 0.25s ease;
     display: block;
     padding: 0.25rem 0;
     position: relative;
@@ -71,7 +87,9 @@
     &:hover {
       opacity: 1;
       color: $white;
-      &::after { width: 100%; }
+      &::after {
+        width: 100%;
+      }
     }
   }
 
@@ -96,7 +114,9 @@
     position: relative;
   }
 
-  input { display: none; }
+  input {
+    display: none;
+  }
 
   svg {
     width: 44px;
@@ -117,7 +137,9 @@
     transition: all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
   }
 
-  circle { display: none; }
+  circle {
+    display: none;
+  }
 
   .line--1,
   .line--3 {
@@ -136,25 +158,43 @@
 }
 
 .cross input:checked + svg {
-  .line--1, .line--3 { --length: 22.627416998; }
-  .line--2 { --length: 0; }
+  .line--1,
+  .line--3 {
+    --length: 22.627416998;
+  }
+  .line--2 {
+    --length: 0;
+  }
 }
 
 .back input:checked + svg {
-  .line--1, .line--3 { --length: 8.602325267; }
+  .line--1,
+  .line--3 {
+    --length: 8.602325267;
+  }
 }
 
 .menu--2 {
-  .line--1, .line--3 {
+  .line--1,
+  .line--3 {
     --total-length: 111.22813415527344;
     --offset: -50.22813415527344;
   }
-  .line--2 { --total-length: 99; }
+  .line--2 {
+    --total-length: 99;
+  }
 
   input:checked + svg {
-    path { transform: translateX(30px); }
-    .line--1, .line--3 { --offset: -16.9705627485; }
-    .line--2 { --offset: -20; }
+    path {
+      transform: translateX(30px);
+    }
+    .line--1,
+    .line--3 {
+      --offset: -16.9705627485;
+    }
+    .line--2 {
+      --offset: -20;
+    }
   }
 }
 
@@ -177,7 +217,9 @@
       gap: 0;
     }
 
-    &__img { height: 38px; }
+    &__img {
+      height: 38px;
+    }
 
     // Hide desktop links — replaced by slide-down panel
     &__links {
@@ -185,22 +227,20 @@
       top: 100%;
       left: 0;
       right: 0;
-      z-index: 99;
+      z-index: 200;
       flex-direction: column;
       align-items: stretch;
       gap: 0;
       padding: 0 1.5rem;
       margin: 0;
       list-style: none;
-      background: var(--nav-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(128, 128, 128, 0.12);
+      background: var(--nav-menu-bg);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       max-height: 0;
       overflow: hidden;
       transition:
         max-height 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-        padding    0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        padding 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 
       &.is-open {
         max-height: 500px;
@@ -211,7 +251,9 @@
     &__item {
       border-bottom: 1px solid rgba(128, 128, 128, 0.1);
 
-      &:last-child { border-bottom: none; }
+      &:last-child {
+        border-bottom: none;
+      }
     }
 
     &__link {
@@ -221,7 +263,9 @@
       letter-spacing: 0.04em;
       opacity: 0.75;
 
-      &::after { display: none; }
+      &::after {
+        display: none;
+      }
 
       &:hover,
       &:active {
@@ -302,7 +346,11 @@
       background: $emerald-light;
     }
 
-    .c-toggle__sun { opacity: 0.5; }
-    .c-toggle__moon { opacity: 1; }
+    .c-toggle__sun {
+      opacity: 0.5;
+    }
+    .c-toggle__moon {
+      opacity: 1;
+    }
   }
 }

@@ -8,7 +8,8 @@
 
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow-x: clip;
+  scroll-padding-top: 81px;
 }
 
 body {
@@ -16,7 +17,7 @@ body {
   color: $white;
   font-family: $font-body;
   margin: 0;
-  overflow-x: hidden;
+  overflow-x: clip;
   padding-top: 81px;
 }
 
