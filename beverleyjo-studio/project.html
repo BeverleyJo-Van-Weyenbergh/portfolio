@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="nl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <script type="module" src="src/js/project-detail.js"></script>
+  <title>Project — Beverley-Jo Studio</title>
+</head>
+
+<body>
+  <div class="c-nav-blur" aria-hidden="true"></div>
+  <div class="c-nav">
+    <nav class="container c-nav__content">
+
+      <div class="c-nav__logo">
+        <a href="/"><img class="c-nav__img" src="/logo-light.png" alt="Beverley-Jo Studio Logo"></a>
+      </div>
+
+      <ul class="c-nav__links">
+        <li class="c-nav__item"><a class="c-nav__link" href="/#uitgelicht">Uitgelicht</a></li>
+        <li class="c-nav__item"><a class="c-nav__link" href="/#over-mij">Over mij</a></li>
+        <li class="c-nav__item"><a class="c-nav__link" href="/#projecten">Projecten</a></li>
+        <li class="c-nav__item"><a class="c-nav__link" href="/#contact">Contact</a></li>
+      </ul>
+
+      <div class="c-nav__actions">
+        <label class="c-toggle js-toggle-label" aria-label="Toggle dark mode">
+          <input type="checkbox" class="c-toggle__input js-toggle" />
+          <span class="c-toggle__track">
+            <span class="c-toggle__thumb"></span>
+            <svg class="c-toggle__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="5" />
+              <line x1="12" y1="1" x2="12" y2="3" />
+              <line x1="12" y1="21" x2="12" y2="23" />
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+              <line x1="1" y1="12" x2="3" y2="12" />
+              <line x1="21" y1="12" x2="23" y2="12" />
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+            </svg>
+            <svg class="c-toggle__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+          </span>
+        </label>
+
+        <div class="c-hamburger menu--2 cross">
+          <label class="c-hamburger__label">
+            <input type="checkbox" class="c-hamburger__input" />
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+              <path class="line--1" d="M0 70l28-28c2-2 2-2 7-2h64" />
+              <path class="line--2" d="M0 50h99" />
+              <path class="line--3" d="M0 30l28 28c2 2 2 2 7 2h64" />
+            </svg>
+          </label>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Dynamic content injected by project-detail.js -->
+  <main id="projectDetail" class="c-detail">
+    <div class="c-detail__loading container">
+      <p>Laden…</p>
+    </div>
+  </main>
+
+  <!-- Lightbox -->
+  <div class="c-lightbox" id="lightbox" aria-hidden="true">
+    <button class="c-lightbox__close" id="lightboxClose" aria-label="Sluiten">✕</button>
+    <button class="c-lightbox__prev" id="lightboxPrev" aria-label="Vorige">←</button>
+    <button class="c-lightbox__next" id="lightboxNext" aria-label="Volgende">→</button>
+    <div class="c-lightbox__media" id="lightboxMedia"></div>
+  </div>
+
+  <footer class="c-footer" data-sr>
+    <div class="c-footer__inner container">
+
+      <div class="c-footer__logo">
+        <a href="/"><img src="/logo-dark.png" alt="Beverley-Jo Studio" class="c-nav__img"></a>
+      </div>
+
+      <nav class="c-footer__nav" aria-label="Footer navigatie">
+        <a class="c-footer__link" href="/#uitgelicht">Uitgelicht</a>
+        <a class="c-footer__link" href="/#over-mij">Over mij</a>
+        <a class="c-footer__link" href="/#projecten">Projecten</a>
+        <a class="c-footer__link" href="/#contact">Contact</a>
+      </nav>
+
+      <div class="c-footer__social">
+        <a class="c-footer__social-link" href="mailto:bj.vanweyenbergh@outlook.com" aria-label="E-mail">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2" />
+            <polyline points="2,4 12,13 22,4" />
+          </svg>
+        </a>
+        <a class="c-footer__social-link" href="https://www.linkedin.com/in/beverley-jo-van-weyenbergh" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+            <rect x="2" y="9" width="4" height="12" />
+            <circle cx="4" cy="4" r="2" />
+          </svg>
+        </a>
+      </div>
+
+    </div>
+    <div class="c-footer__bottom container">
+      <p class="c-footer__copy">&copy; 2026 Beverley Jo Studio. Alle rechten voorbehouden.</p>
+    </div>
+  </footer>
+</body>
+
+</html>

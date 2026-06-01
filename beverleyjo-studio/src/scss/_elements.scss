@@ -39,12 +39,12 @@ body {
 
   &--primary {
     background: $emerald;
-    color: $white;
+    color: #ede5d8;
     border: 1px solid $emerald-light;
 
     &:hover {
       background: $emerald-light;
-      color: $white;
+      color: #ede5d8;
     }
   }
 
@@ -55,7 +55,7 @@ body {
 
     &:hover {
       background: $gold;
-      color: $white;
+      color: #ede5d8;
     }
   }
 

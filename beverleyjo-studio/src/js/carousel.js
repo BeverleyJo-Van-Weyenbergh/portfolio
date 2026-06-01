@@ -117,9 +117,13 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   grid.addEventListener('click', (e) => {
+    if (e.target.closest('a')) return;
     const item = e.target.closest('.c-featured__item');
     if (!item) return;
-    if (!item.classList.contains(FEATURED_SLOT)) {
+    if (item.classList.contains(FEATURED_SLOT)) {
+      const link = item.querySelector('.c-featured__link');
+      if (link) window.location.href = link.href;
+    } else {
       swapCards(item);
     }
   });
