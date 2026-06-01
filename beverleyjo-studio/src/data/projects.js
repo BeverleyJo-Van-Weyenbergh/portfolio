@@ -114,7 +114,7 @@ export const PROJECTS = [
     name: 'Shazam promovideo',
     featured: false,
     featuredImage: './mockups/shazam/shazam.webp',
-    images: ['./mockups/shazam/video.webp', './mockups/shazam/intro-2.webp'],
+    images: ['/mockups/shazam/video.mp4', '/mockups/shazam/intro.mp4'],
     descriptionShort: 'Promovideo voor Shazam met focus op nieuwe functies en een frisse gebruikerservaring.',
     descriptionLong:
       'Voor een schoolopdracht maakte ik een promovideo voor Shazam, met als doel de nieuwste functies van de app in de kijker te zetten. Ik werkte het concept volledig zelf uit, van moodboard tot eindmontage. De video is afgestemd op een jong publiek en legt de nadruk op snelheid, herkenbaarheid en de magie van muziek ontdekken.',

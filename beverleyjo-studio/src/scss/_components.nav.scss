@@ -100,6 +100,34 @@
     justify-content: flex-end;
     gap: 1rem;
   }
+
+  // ── CV BUTTON ──────────────────────────────────────────
+  &__cv {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: $font-body;
+    font-size: $fs-xs;
+    font-weight: $fw-semi;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    color: #ede5d8;
+    background: $emerald;
+    border: 1px solid $emerald-light;
+    border-radius: $radius-full;
+    padding: 7px 16px;
+    transition: $transition-fast;
+
+    &:hover {
+      background: $emerald-light;
+      color: #ede5d8;
+    }
+
+    svg {
+      display: block;
+      flex-shrink: 0;
+    }
+  }
 }
 
 // ── HAMBURGER ─────────────────────────────────────────────
