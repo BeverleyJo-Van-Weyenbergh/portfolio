@@ -199,6 +199,53 @@
 
     &-item:hover &-img,
     &-item:hover &-video { transform: scale(1.04); }
+
+    // ── VIDEO INDICATOR ─────────────────────────────────
+    &-item--video {
+      &::before {
+        content: 'VIDEO';
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 2;
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        color: #ede5d8;
+        background: rgba(34, 27, 27, 0.7);
+        border: 1px solid rgba(237, 229, 216, 0.2);
+        border-radius: 4px;
+        padding: 3px 7px;
+      }
+    }
+  }
+
+  &__play-btn {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ede5d8;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+
+    svg {
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+      width: 48px;
+      height: 48px;
+      opacity: 0.85;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+  }
+
+  &__gallery-item:hover &__play-btn svg {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  &__gallery { // reopen to avoid duplicate
   }
 
   // ── RESPONSIVE ──────────────────────────────────────

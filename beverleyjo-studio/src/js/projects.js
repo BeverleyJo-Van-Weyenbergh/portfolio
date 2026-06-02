@@ -79,12 +79,16 @@ document.querySelectorAll('.c-projects__filter').forEach(btn => {
   });
 });
 
+function scrollToSection() {
+  document.getElementById('projecten')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 prevBtn.addEventListener('click', () => {
-  if (currentPage > 1) { currentPage--; render('prev'); }
+  if (currentPage > 1) { currentPage--; render('prev'); scrollToSection(); }
 });
 nextBtn.addEventListener('click', () => {
   const total = Math.ceil(filtered().length / PER_PAGE);
-  if (currentPage < total) { currentPage++; render('next'); }
+  if (currentPage < total) { currentPage++; render('next'); scrollToSection(); }
 });
 
 window.addEventListener('langchange', () => render());

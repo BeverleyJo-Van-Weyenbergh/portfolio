@@ -59,8 +59,11 @@ function renderContent() {
         <p class="c-detail__gallery-label">${t('detail.gallery')}</p>
         <div class="c-detail__gallery" id="detailGallery">
           ${galleryItems.map((src, i) => isVideo(src)
-            ? `<div class="c-detail__gallery-item" data-index="${i}">
+            ? `<div class="c-detail__gallery-item c-detail__gallery-item--video" data-index="${i}">
                  <video class="c-detail__gallery-video" src="${src}" muted loop playsinline></video>
+                 <span class="c-detail__play-btn" aria-hidden="true">
+                   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+                 </span>
                </div>`
             : `<div class="c-detail__gallery-item" data-index="${i}">
                  <img class="c-detail__gallery-img" src="${src}" alt="${projectField(project, 'name')} ${i + 1}" loading="lazy">
