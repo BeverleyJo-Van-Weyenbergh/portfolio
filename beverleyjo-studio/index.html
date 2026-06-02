@@ -26,12 +26,12 @@
       </div>
 
       <ul class="c-nav__links">
-        <li class="c-nav__item"><a class="c-nav__link" href="#uitgelicht">Uitgelicht</a></li>
-        <li class="c-nav__item"><a class="c-nav__link" href="#over-mij">Over mij</a></li>
-        <li class="c-nav__item"><a class="c-nav__link" href="#projecten">Projecten</a></li>
-        <li class="c-nav__item"><a class="c-nav__link" href="#contact">Contact</a></li>
+        <li class="c-nav__item"><a class="c-nav__link" href="#uitgelicht" data-i18n="nav.featured">Uitgelicht</a></li>
+        <li class="c-nav__item"><a class="c-nav__link" href="#over-mij" data-i18n="nav.about">Over mij</a></li>
+        <li class="c-nav__item"><a class="c-nav__link" href="#projecten" data-i18n="nav.projects">Projecten</a></li>
+        <li class="c-nav__item"><a class="c-nav__link" href="#contact" data-i18n="nav.contact">Contact</a></li>
         <li class="c-nav__item c-nav__item--cv">
-          <a class="c-nav__link c-nav__link--cv" href="/cv.pdf" target="_blank" rel="noopener">
+          <a class="c-nav__link c-nav__link--cv" href="/cv.pdf" target="_blank" rel="noopener" id="cvLinkMobile">
             Bekijk CV
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
@@ -42,6 +42,11 @@
       </ul>
 
       <div class="c-nav__actions">
+        <div class="c-lang">
+          <button class="c-lang__btn c-lang__btn--active" data-lang="nl">NL</button>
+          <span class="c-lang__sep">|</span>
+          <button class="c-lang__btn" data-lang="en">EN</button>
+        </div>
         <label class="c-toggle js-toggle-label" aria-label="Toggle dark mode">
           <input type="checkbox" class="c-toggle__input js-toggle" />
           <span class="c-toggle__track">
@@ -81,18 +86,18 @@
   <div class="c-heading" id="home">
     <div class="c-heading__inner container">
 
-      <h1 class="c-heading__title" data-reveal>
+      <h1 class="c-heading__title" data-reveal data-i18n-html="hero.title">
         Design dat werkt,<br>
         <em class="c-heading__title--em">code die telt.</em>
       </h1>
 
-      <p class="c-heading__text" data-reveal>
-        Creatieve junior developer uit België die esthetiek en techniek combineert tot digitale ervaringen die écht blijven hangen.
+      <p class="c-heading__text" data-reveal data-i18n="hero.subtitle">
+        Creatieve developer uit België die esthetiek en techniek combineert tot digitale ervaringen die écht blijven hangen.
       </p>
 
       <div class="c-heading__group" data-reveal>
-        <a href="#uitgelicht" class="c-btn c-btn--primary">Bekijk mijn werk</a>
-        <a href="#contact" class="c-btn c-btn--secondary">Neem contact op</a>
+        <a href="#uitgelicht" class="c-btn c-btn--primary" data-i18n="hero.cta-primary">Bekijk mijn werk</a>
+        <a href="#contact" class="c-btn c-btn--secondary" data-i18n="hero.cta-secondary">Neem contact op</a>
       </div>
 
     </div>
@@ -106,28 +111,28 @@
   </div>
 
   <section class="c-services container" id="services">
-    <h2 class="c-services__heading" data-sr>Mijn services</h2>
+    <h2 class="c-services__heading" data-sr data-i18n="services.heading">Mijn services</h2>
     <div class="c-services__cards" data-sr-stagger>
       <div class="c-services__card">
         <span class="c-services__card-icon">✦</span>
-        <h3 class="c-services__card-title">UI & UX Design</h3>
-        <p class="c-services__card-desc">Van wireframe tot afgewerkt ontwerp. Ik maak interfaces die er goed uitzien én prettig werken.</p>
+        <h3 class="c-services__card-title" data-i18n="services.ux.title">UI & UX Design</h3>
+        <p class="c-services__card-desc" data-i18n="services.ux.desc">Van wireframe tot afgewerkt ontwerp. Ik maak interfaces die er goed uitzien én prettig werken.</p>
       </div>
       <div class="c-services__card">
         <span class="c-services__card-icon">⟨/⟩</span>
-        <h3 class="c-services__card-title">Web development</h3>
-        <p class="c-services__card-desc">Snelle, toegankelijke websites en applicaties gebouwd met moderne technologieën.</p>
+        <h3 class="c-services__card-title" data-i18n="services.dev.title">Web development</h3>
+        <p class="c-services__card-desc" data-i18n="services.dev.desc">Snelle, toegankelijke websites en applicaties gebouwd met moderne technologieën.</p>
       </div>
       <div class="c-services__card">
         <span class="c-services__card-icon">◈</span>
-        <h3 class="c-services__card-title">Visueel ontwerp</h3>
-        <p class="c-services__card-desc">Grafisch ontwerp, video en social media content. Van visitekaartje tot promovideo, van print tot reels.</p>
+        <h3 class="c-services__card-title" data-i18n="services.visual.title">Visueel ontwerp</h3>
+        <p class="c-services__card-desc" data-i18n="services.visual.desc">Grafisch ontwerp, video en social media content. Van visitekaartje tot promovideo, van print tot reels.</p>
       </div>
     </div>
   </section>
 
   <section class="c-featured container" id="uitgelicht">
-    <h2 class="c-featured__heading" data-sr>Uitgelichte projecten</h2>
+    <h2 class="c-featured__heading" data-sr data-i18n="featured.heading">Uitgelichte projecten</h2>
     <div class="c-featured__grid" data-sr data-sr-delay="0.15"></div>
   </section>
 
@@ -140,18 +145,22 @@
       </div>
       <div class="c-about__d-inner">
         <div class="c-about__d-left">
-          <h2 class="c-about__heading">Creatief,<br><em>technisch,</em><br>gedreven.</h2>
-          <p class="c-about__bio">Ik ben Beverley-Jo, een creatieve front-end developer en designer uit België. Ik hou van projecten waarbij esthetiek en techniek samenkomen. Van een strakke interface tot een social media post of een korte promovideo. Die brede mix is precies wat me anders maakt. Of het nu voor een lokale ondernemer is, een tech-startup of een eigen project. Ik gooi er altijd honderd procent in.</p>
+          <h2 class="c-about__heading" data-i18n-html="about.heading">Creatief,<br><em>technisch,</em><br>gedreven.</h2>
+          <p class="c-about__bio" data-i18n="about.bio">Ik ben Beverley-Jo, een creatieve front-end developer en designer uit België. Ik hou van projecten waarbij esthetiek en techniek samenkomen. Van een strakke interface tot een social media post of een korte promovideo. Die brede mix is precies wat me anders maakt. Of het nu voor een lokale ondernemer is, een tech-startup of een eigen project — ik gooi er altijd honderd procent in.</p>
+          <a class="c-btn c-btn--secondary c-about__cv" href="/cv.pdf" target="_blank" rel="noopener" id="cvLink">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <span data-i18n="nav.cv">Bekijk CV</span>
+          </a>
         </div>
         <div class="c-about__d-right">
           <div class="c-about__group">
-            <p class="c-about__group-title">Technische skills</p>
+            <p class="c-about__group-title" data-i18n="about.tech-skills">Technische skills</p>
             <div class="c-about__group-items">
               <span class="c-about__group-item">HTML</span><span class="c-about__group-item">CSS</span><span class="c-about__group-item">SCSS</span><span class="c-about__group-item">Bootstrap</span><span class="c-about__group-item">Javascript</span><span class="c-about__group-item">Vue.js</span><span class="c-about__group-item">Vite</span><span class="c-about__group-item">WordPress</span><span class="c-about__group-item">Craft CMS</span><span class="c-about__group-item">Twig</span><span class="c-about__group-item">Figma</span><span class="c-about__group-item">Adobe Ai</span><span class="c-about__group-item">Photoshop</span><span class="c-about__group-item">InDesign</span><span class="c-about__group-item">Github</span><span class="c-about__group-item">Lottie</span>
             </div>
           </div>
           <div class="c-about__group">
-            <p class="c-about__group-title">Soft skills</p>
+            <p class="c-about__group-title" data-i18n="about.soft-skills">Soft skills</p>
             <div class="c-about__group-items">
               <span class="c-about__group-item">Creatief</span><span class="c-about__group-item">Leergierig</span><span class="c-about__group-item">Stipt</span><span class="c-about__group-item">Zelfstandig</span><span class="c-about__group-item">Nauwkeurig</span><span class="c-about__group-item">Stressbestendig</span><span class="c-about__group-item">Doelgericht</span>
             </div>
@@ -164,12 +173,12 @@
 
   <section class="c-projects container" id="projecten">
     <div class="c-projects__header">
-      <h2 class="c-projects__heading" data-sr>Alle projecten</h2>
+      <h2 class="c-projects__heading" data-sr data-i18n="projects.heading">Alle projecten</h2>
       <div class="c-projects__filters">
-        <button class="c-projects__filter c-projects__filter--active" data-filter="all">Alles</button>
-        <button class="c-projects__filter" data-filter="school">School</button>
-        <button class="c-projects__filter" data-filter="stage">Stage</button>
-        <button class="c-projects__filter" data-filter="eigen project">Eigen project</button>
+        <button class="c-projects__filter c-projects__filter--active" data-filter="all" data-i18n="projects.filter-all">Alles</button>
+        <button class="c-projects__filter" data-filter="school" data-i18n="projects.filter-school">School</button>
+        <button class="c-projects__filter" data-filter="stage" data-i18n="projects.filter-stage">Stage</button>
+        <button class="c-projects__filter" data-filter="eigen project" data-i18n="projects.filter-eigen">Eigen project</button>
       </div>
     </div>
 
@@ -187,8 +196,8 @@
     <div class="c-contact__inner" data-sr>
 
       <div class="c-contact__left">
-        <h2 class="c-contact__heading">Laten we<br><em>samenwerken.</em></h2>
-        <p class="c-contact__sub">Heb je een project in gedachten of wil je gewoon even kennismaken? Ik hoor graag van je.</p>
+        <h2 class="c-contact__heading" data-i18n-html="contact.heading">Laten we<br><em>samenwerken.</em></h2>
+        <p class="c-contact__sub" data-i18n="contact.sub">Heb je een project in gedachten of wil je gewoon even kennismaken? Ik hoor graag van je.</p>
         <div class="c-contact__links">
           <a class="c-contact__link" href="mailto:bj.vanweyenbergh@outlook.com">
             <span class="c-contact__link-icon">
@@ -208,23 +217,23 @@
 
       <form class="c-contact__form" id="contactForm" novalidate>
         <div class="c-contact__field">
-          <label class="c-contact__label" for="contact-name">Naam</label>
-          <input class="c-contact__input" type="text" id="contact-name" name="name" placeholder="Jouw naam" autocomplete="name">
+          <label class="c-contact__label" for="contact-name" data-i18n="contact.name">Naam</label>
+          <input class="c-contact__input" type="text" id="contact-name" name="name" placeholder="Jouw naam" autocomplete="name" data-i18n-placeholder="contact.placeholder-name">
         </div>
         <div class="c-contact__field">
-          <label class="c-contact__label" for="contact-email">E-mail</label>
-          <input class="c-contact__input" type="email" id="contact-email" name="email" placeholder="jouw@email.be" autocomplete="email">
+          <label class="c-contact__label" for="contact-email" data-i18n="contact.email">E-mail</label>
+          <input class="c-contact__input" type="email" id="contact-email" name="email" placeholder="jouw@email.be" autocomplete="email" data-i18n-placeholder="contact.placeholder-email">
         </div>
         <div class="c-contact__field">
-          <label class="c-contact__label" for="contact-message">Bericht</label>
-          <textarea class="c-contact__input c-contact__input--textarea" id="contact-message" name="message" placeholder="Vertel me over je project..." rows="5"></textarea>
+          <label class="c-contact__label" for="contact-message" data-i18n="contact.message">Bericht</label>
+          <textarea class="c-contact__input c-contact__input--textarea" id="contact-message" name="message" placeholder="Vertel me over je project..." rows="5" data-i18n-placeholder="contact.placeholder-msg"></textarea>
         </div>
         <button class="c-contact__submit" type="submit">
-          <span class="c-contact__submit-text">Verstuur bericht <span class="c-contact__submit-arrow">→</span></span>
-          <span class="c-contact__submit-sending" hidden>Bezig met verzenden…</span>
+          <span class="c-contact__submit-text"><span data-i18n="contact.submit">Verstuur bericht</span> <span class="c-contact__submit-arrow">→</span></span>
+          <span class="c-contact__submit-sending" hidden data-i18n="contact.sending">Bezig met verzenden…</span>
         </button>
-        <p class="c-contact__feedback c-contact__feedback--success" hidden>Bedankt! Ik neem zo snel mogelijk contact met je op.</p>
-        <p class="c-contact__feedback c-contact__feedback--error" hidden>Er ging iets mis. Probeer het opnieuw of mail me rechtstreeks.</p>
+        <p class="c-contact__feedback c-contact__feedback--success" hidden data-i18n="contact.success">Bedankt! Ik neem zo snel mogelijk contact met je op.</p>
+        <p class="c-contact__feedback c-contact__feedback--error" hidden data-i18n="contact.error">Er ging iets mis. Probeer het opnieuw of mail me rechtstreeks.</p>
       </form>
 
     </div>
@@ -238,10 +247,10 @@
       </div>
 
       <nav class="c-footer__nav" aria-label="Footer navigatie">
-        <a class="c-footer__link" href="#uitgelicht">Uitgelicht</a>
-        <a class="c-footer__link" href="#over-mij">Over mij</a>
-        <a class="c-footer__link" href="#projecten">Projecten</a>
-        <a class="c-footer__link" href="#contact">Contact</a>
+        <a class="c-footer__link" href="#uitgelicht" data-i18n="nav.featured">Uitgelicht</a>
+        <a class="c-footer__link" href="#over-mij" data-i18n="nav.about">Over mij</a>
+        <a class="c-footer__link" href="#projecten" data-i18n="nav.projects">Projecten</a>
+        <a class="c-footer__link" href="#contact" data-i18n="nav.contact">Contact</a>
       </nav>
 
       <div class="c-footer__social">
@@ -262,7 +271,7 @@
 
     </div>
     <div class="c-footer__bottom container">
-      <p class="c-footer__copy">&copy; 2026 Beverley Jo Studio. Alle rechten voorbehouden.</p>
+      <p class="c-footer__copy" data-i18n="footer.copy">© 2026 Beverley Jo Studio. Alle rechten voorbehouden.</p>
     </div>
   </footer>
 

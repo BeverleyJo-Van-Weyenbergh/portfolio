@@ -26,19 +26,24 @@
       </div>
 
       <ul class="c-nav__links">
-        <li class="c-nav__item"><a class="c-nav__link" href="/#uitgelicht">Uitgelicht</a></li>
-        <li class="c-nav__item"><a class="c-nav__link" href="/#over-mij">Over mij</a></li>
-        <li class="c-nav__item"><a class="c-nav__link" href="/#projecten">Projecten</a></li>
-        <li class="c-nav__item"><a class="c-nav__link" href="/#contact">Contact</a></li>
+        <li class="c-nav__item"><a class="c-nav__link" href="/#uitgelicht" data-i18n="nav.featured">Uitgelicht</a></li>
+        <li class="c-nav__item"><a class="c-nav__link" href="/#over-mij" data-i18n="nav.about">Over mij</a></li>
+        <li class="c-nav__item"><a class="c-nav__link" href="/#projecten" data-i18n="nav.projects">Projecten</a></li>
+        <li class="c-nav__item"><a class="c-nav__link" href="/#contact" data-i18n="nav.contact">Contact</a></li>
         <li class="c-nav__item c-nav__item--cv">
           <a class="c-nav__link c-nav__link--cv" href="/cv.pdf" target="_blank" rel="noopener">
-            Bekijk CV
+            <span data-i18n="nav.cv">Bekijk CV</span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           </a>
         </li>
       </ul>
 
       <div class="c-nav__actions">
+        <div class="c-lang">
+          <button class="c-lang__btn c-lang__btn--active" data-lang="nl">NL</button>
+          <span class="c-lang__sep">|</span>
+          <button class="c-lang__btn" data-lang="en">EN</button>
+        </div>
         <label class="c-toggle js-toggle-label" aria-label="Toggle dark mode">
           <input type="checkbox" class="c-toggle__input js-toggle" />
           <span class="c-toggle__track">
@@ -97,10 +102,10 @@
       </div>
 
       <nav class="c-footer__nav" aria-label="Footer navigatie">
-        <a class="c-footer__link" href="/#uitgelicht">Uitgelicht</a>
-        <a class="c-footer__link" href="/#over-mij">Over mij</a>
-        <a class="c-footer__link" href="/#projecten">Projecten</a>
-        <a class="c-footer__link" href="/#contact">Contact</a>
+        <a class="c-footer__link" href="/#uitgelicht" data-i18n="nav.featured">Uitgelicht</a>
+        <a class="c-footer__link" href="/#over-mij" data-i18n="nav.about">Over mij</a>
+        <a class="c-footer__link" href="/#projecten" data-i18n="nav.projects">Projecten</a>
+        <a class="c-footer__link" href="/#contact" data-i18n="nav.contact">Contact</a>
       </nav>
 
       <div class="c-footer__social">
@@ -121,7 +126,7 @@
 
     </div>
     <div class="c-footer__bottom container">
-      <p class="c-footer__copy">&copy; 2026 Beverley Jo Studio. Alle rechten voorbehouden.</p>
+      <p class="c-footer__copy" data-i18n="footer.copy">© 2026 Beverley Jo Studio. Alle rechten voorbehouden.</p>
     </div>
   </footer>
 </body>

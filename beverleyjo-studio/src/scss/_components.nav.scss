@@ -101,6 +101,42 @@
     gap: 1rem;
   }
 
+  // ── LANGUAGE SWITCHER ──────────────────────────────────
+}
+
+.c-lang {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  &__btn {
+    background: transparent;
+    border: none;
+    font-family: $font-body;
+    font-size: $fs-xs;
+    font-weight: $fw-semi;
+    letter-spacing: 0.08em;
+    color: $text-muted;
+    cursor: pointer;
+    padding: 2px 4px;
+    transition: $transition-fast;
+
+    &:hover { color: $white; }
+
+    &--active {
+      color: $emerald-light;
+    }
+  }
+
+  &__sep {
+    font-size: $fs-xs;
+    color: $text-muted;
+    opacity: 0.4;
+    user-select: none;
+  }
+}
+
+.c-nav {
   // ── CV IN MOBILE MENU ──────────────────────────────────
   &__item--cv {
     display: none;

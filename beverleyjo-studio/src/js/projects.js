@@ -1,4 +1,6 @@
-import { PROJECTS, TAG_LABELS } from '../data/projects.js';
+import { PROJECTS } from '../data/projects.js';
+import { t, getLang, projectField } from './i18n.js';
+
 const PER_PAGE = 6;
 
 const grid    = document.getElementById('projectsGrid');
@@ -32,15 +34,17 @@ function render(direction = 'none') {
     else if (direction === 'prev') card.classList.add('c-projects__card--in-left');
     else                           card.classList.add('c-projects__card--in-up');
 
+    const name = projectField(project, 'name');
+
     card.innerHTML = `
       <a href="./project.html?slug=${project.slug}" class="c-projects__card-link">
         <div class="c-projects__card-img" style="background-image: url('${project.featuredImage}')"></div>
         <div class="c-projects__card-body">
           <div class="c-projects__card-tags">
-            ${project.tags.map(t => `<span class="c-projects__card-tag c-projects__card-tag--${t}">${TAG_LABELS[t] || t}</span>`).join('')}
+            ${project.tags.map(tag => `<span class="c-projects__card-tag c-projects__card-tag--${tag}">${t('tag.' + tag)}</span>`).join('')}
           </div>
-          <h3 class="c-projects__card-name">${project.name}</h3>
-          <span class="c-projects__card-cta">Project bekijken <span class="c-projects__card-arrow">→</span></span>
+          <h3 class="c-projects__card-name">${name}</h3>
+          <span class="c-projects__card-cta">${t('projects.cta')} <span class="c-projects__card-arrow">→</span></span>
         </div>
       </a>`;
     grid.appendChild(card);
@@ -79,8 +83,10 @@ prevBtn.addEventListener('click', () => {
   if (currentPage > 1) { currentPage--; render('prev'); }
 });
 nextBtn.addEventListener('click', () => {
-  const t = Math.ceil(filtered().length / PER_PAGE);
-  if (currentPage < t) { currentPage++; render('next'); }
+  const total = Math.ceil(filtered().length / PER_PAGE);
+  if (currentPage < total) { currentPage++; render('next'); }
 });
+
+window.addEventListener('langchange', () => render());
 
 render();

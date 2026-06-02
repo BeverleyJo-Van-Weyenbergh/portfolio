@@ -1,4 +1,5 @@
 import { PROJECTS } from '../data/projects.js';
+import { t, projectField } from './i18n.js';
 
 // ── FEATURED CARD SWAP (FLIP ghost animation) ─────────
 const FEATURED_SLOT = 'c-featured__item--slot-featured';
@@ -98,23 +99,28 @@ document.addEventListener('DOMContentLoaded', () => {
   const grid = document.querySelector('.c-featured__grid');
   if (!grid) return;
 
-  // ── RENDER FEATURED FROM DATA ──────────────────────────
   const featured = PROJECTS.filter(p => p.featured).slice(0, 4);
   const slots = ['slot-featured', 'slot-top', 'slot-mid', 'slot-bottom'];
 
-  featured.forEach((project, i) => {
-    const item = document.createElement('div');
-    item.className = `c-featured__item c-featured__item--${slots[i]}`;
-    if (i === 0) item.classList.add('c-featured__item--featured', 'c-featured__item--reveal', 'c-featured__item--slot-featured');
-    item.style.backgroundImage = `url('${project.featuredImage}')`;
-    item.innerHTML = `
-      <div class="c-featured__desc">
-        <h3>${project.name}</h3>
-        <p>${project.descriptionShort}</p>
-        <a href="./project.html?slug=${project.slug}" class="c-featured__link">Project bekijken <span class="c-featured__arrow">→</span></a>
-      </div>`;
-    grid.appendChild(item);
-  });
+  function renderFeatured() {
+    grid.innerHTML = '';
+    featured.forEach((project, i) => {
+      const item = document.createElement('div');
+      item.className = `c-featured__item c-featured__item--${slots[i]}`;
+      if (i === 0) item.classList.add('c-featured__item--featured', 'c-featured__item--reveal', 'c-featured__item--slot-featured');
+      item.style.backgroundImage = `url('${project.featuredImage}')`;
+      item.innerHTML = `
+        <div class="c-featured__desc">
+          <h3>${projectField(project, 'name')}</h3>
+          <p>${projectField(project, 'descriptionShort')}</p>
+          <a href="./project.html?slug=${project.slug}" class="c-featured__link">${t('featured.cta')} <span class="c-featured__arrow">→</span></a>
+        </div>`;
+      grid.appendChild(item);
+    });
+  }
+
+  renderFeatured();
+  window.addEventListener('langchange', renderFeatured);
 
   grid.addEventListener('click', (e) => {
     if (e.target.closest('a')) return;
