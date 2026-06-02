@@ -101,6 +101,31 @@
     gap: 1rem;
   }
 
+  // ── CV IN MOBILE MENU ──────────────────────────────────
+  &__item--cv {
+    display: none;
+    border-bottom: none !important;
+  }
+
+  &__link--cv {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    color: $emerald-light !important;
+    font-size: $fs-base !important;
+    font-weight: $fw-semi !important;
+    opacity: 1 !important;
+    padding: 1rem 0 !important;
+
+    &::after { display: none !important; }
+
+    svg {
+      display: block;
+      flex-shrink: 0;
+      opacity: 0.8;
+    }
+  }
+
   // ── CV BUTTON ──────────────────────────────────────────
   &__cv {
     display: inline-flex;
@@ -263,7 +288,7 @@
       margin: 0;
       list-style: none;
       background: var(--nav-menu-bg);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: none;
       max-height: 0;
       overflow: hidden;
       transition:
@@ -304,6 +329,10 @@
   }
 
   .c-hamburger {
+    display: block;
+  }
+
+  .c-nav__item--cv {
     display: block;
   }
 }

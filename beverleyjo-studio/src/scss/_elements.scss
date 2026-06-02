@@ -66,6 +66,38 @@ body {
   }
 }
 
+// ── SCROLL TO TOP ──────────────────────────────────────
+.c-scroll-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 200;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: $emerald;
+  border: 1px solid $emerald-light;
+  color: #ede5d8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease;
+
+  &.is-visible {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    background: $emerald-light;
+  }
+}
+
 // ── MOBILE SECTION SPACING ─────────────────────────────
 @media (max-width: 767px) {
   .c-services,

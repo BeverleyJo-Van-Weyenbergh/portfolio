@@ -8,8 +8,10 @@
   <meta name="description" content="Portfolio van Beverley-Jo Van Weyenbergh — creatieve junior developer en designer uit België. UX design, web development en grafisch ontwerp." />
   <meta property="og:title" content="Beverley-Jo Studio" />
   <meta property="og:description" content="Creatieve junior developer uit België die esthetiek en techniek combineert tot digitale ervaringen die écht blijven hangen." />
-  <meta property="og:image" content="/logo-light.png" />
+  <meta property="og:image" content="/og-image.png" />
   <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="/og-image.png" />
   <script type="module" src="src/js/main.js"></script>
   <title>Beverley-Jo Studio</title>
 </head>
@@ -28,13 +30,15 @@
         <li class="c-nav__item"><a class="c-nav__link" href="#over-mij">Over mij</a></li>
         <li class="c-nav__item"><a class="c-nav__link" href="#projecten">Projecten</a></li>
         <li class="c-nav__item"><a class="c-nav__link" href="#contact">Contact</a></li>
+        <li class="c-nav__item c-nav__item--cv">
+          <a class="c-nav__link c-nav__link--cv" href="/cv.pdf" target="_blank" rel="noopener">
+            Bekijk CV
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </a>
+        </li>
       </ul>
 
       <div class="c-nav__actions">
-        <a class="c-nav__cv" href="/cv.pdf" target="_blank" rel="noopener" aria-label="Bekijk CV">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-          Bekijk CV
-        </a>
         <label class="c-toggle js-toggle-label" aria-label="Toggle dark mode">
           <input type="checkbox" class="c-toggle__input js-toggle" />
           <span class="c-toggle__track">
@@ -134,7 +138,7 @@
       <div class="c-about__d-inner">
         <div class="c-about__d-left">
           <h2 class="c-about__heading">Creatief,<br><em>technisch,</em><br>gedreven.</h2>
-          <p class="c-about__bio">Ik ben Beverley-Jo, een creatieve web developer en designer uit België. Ik combineer een sterk gevoel voor esthetiek met technische kennis om digitale ervaringen te bouwen die zowel mooi als functioneel zijn.</p>
+          <p class="c-about__bio">Ik ben Beverley-Jo, een creatieve front-end developer en designer uit België. Ik hou van projecten waarbij esthetiek en techniek samenkomen. Van een strakke interface tot een social media post of een korte promovideo. Die brede mix is precies wat me anders maakt. Of het nu voor een lokale ondernemer is, een tech-startup of een eigen project. Ik gooi er altijd honderd procent in.</p>
         </div>
         <div class="c-about__d-right">
           <div class="c-about__group">
@@ -258,6 +262,10 @@
       <p class="c-footer__copy">&copy; 2026 Beverley Jo Studio. Alle rechten voorbehouden.</p>
     </div>
   </footer>
+
+  <button class="c-scroll-top" id="scrollTop" aria-label="Terug naar boven">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+  </button>
 
   <script type="module" src="src/js/projects.js"></script>
   <script type="module" src="src/js/contact.js"></script>

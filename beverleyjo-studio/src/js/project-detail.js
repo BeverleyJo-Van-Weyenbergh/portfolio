@@ -67,6 +67,12 @@ if (!project) {
        </div>`
     : '';
 
+  const metaRowHtml = `
+    <div class="c-detail__meta-row">
+      ${project.role ? `<div class="c-detail__meta-item"><span class="c-detail__meta-label">Rol</span><span class="c-detail__meta-value">${project.role}</span></div>` : ''}
+      ${project.tools?.length ? `<div class="c-detail__meta-item"><span class="c-detail__meta-label">Tools</span><span class="c-detail__meta-value">${project.tools.map(t => `<span class="c-detail__tool">${t}</span>`).join('')}</span></div>` : ''}
+    </div>`;
+
   detail.innerHTML = `
     <div class="c-detail__body container">
       <a class="c-detail__back" href="/#projecten">← Terug naar projecten</a>
@@ -76,6 +82,7 @@ if (!project) {
           <div class="c-projects__card-tags">${tagsHtml}</div>
           <h1 class="c-detail__title">${project.name}</h1>
           <p class="c-detail__desc">${project.descriptionLong}</p>
+          ${metaRowHtml}
           ${linksHtml}
         </div>
         <div class="c-detail__cover">

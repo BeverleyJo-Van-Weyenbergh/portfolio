@@ -69,6 +69,50 @@
     margin: 0;
   }
 
+  // ── META ROW (role + tools) ──────────────────────────
+  &__meta-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(237, 229, 216, 0.08);
+    border-bottom: 1px solid rgba(237, 229, 216, 0.08);
+  }
+
+  &__meta-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+
+  &__meta-label {
+    font-size: $fs-xs;
+    font-weight: $fw-semi;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: $text-muted;
+    flex-shrink: 0;
+    width: 40px;
+  }
+
+  &__meta-value {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+    font-size: $fs-sm;
+    color: $text-muted;
+  }
+
+  &__tool {
+    font-size: $fs-xs;
+    font-weight: $fw-medium;
+    padding: 2px 10px;
+    border-radius: $radius-full;
+    border: 1px solid rgba(237, 229, 216, 0.15);
+    color: $emerald-light;
+  }
+
   // ── LINKS ───────────────────────────────────────────
   &__links {
     display: flex;
